@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
+    public static event Action<Interactable> OnTargetChanged;
+
     [NonSerialized] public List<Interactable> inRangeInteractables = new List<Interactable>();
 
     
@@ -76,22 +78,26 @@ public class PlayerInteract : MonoBehaviour
     }
 
 
-    private void Update()
+    private void HandleInteract()
     {
         UpdateInteractables();
 
         Interactable target = GetBestInteractable();
-        if(target != null)
+        OnTargetChanged?.Invoke(target);
+
+        if(target != null && Input.GetButtonDown("Interact"))
         {
-            if(Input.GetButtonDown("Interact"))
-            {
-                //The player wants to interact with the thing
-                target.Interact();
-            }
+            //The player wants to interact with the thing
+            target.Interact();
         }
-        else
+    }
+
+
+    private void Update()
+    {
+        if(!TerminalScreen.TerminalActive)
         {
-            
+            HandleInteract();
         }
     }
 

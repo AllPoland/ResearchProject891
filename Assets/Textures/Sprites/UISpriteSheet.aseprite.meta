@@ -142,7 +142,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: Panel
+  - name: TransparentPanel
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -206,13 +206,13 @@ ScriptedImporter:
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
-    border: {x: 1, y: 0, z: 1, w: 1}
+    border: {x: 1, y: 1, z: 1, w: 1}
     rect:
       serializedVersion: 2
       x: 52
-      y: 5
+      y: 4
       width: 16
-      height: 15
+      height: 16
     spriteID: 8ea72ca4af155dd438e49a1b2c945121
     spriteBone: []
     spriteOutline: []

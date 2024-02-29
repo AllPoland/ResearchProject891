@@ -55,9 +55,9 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void UpdateTerminalActive(bool active)
+    private void UpdateTerminalActive(bool terminalActive)
     {
-        if(active)
+        if(terminalActive)
         {
             //Terminal is on, place the camera in front of it
             cameraTransform.position = TerminalScreen.Instance.targetCameraPosition;
