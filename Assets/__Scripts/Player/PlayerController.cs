@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     [Space]
     [SerializeField] private float defaultSensitivityMult = 1f;
 
+    [Space]
+    [SerializeField] private Light pointLight;
+
     private CharacterController characterController;
 
     private Vector3 velocity;
@@ -62,6 +65,8 @@ public class PlayerController : MonoBehaviour
             //Terminal is on, place the camera in front of it
             cameraTransform.position = TerminalScreen.Instance.targetCameraPosition;
             cameraTransform.eulerAngles = TerminalScreen.Instance.targetCameraRotation;
+
+            pointLight.enabled = false;
         }
         else
         {
@@ -74,6 +79,8 @@ public class PlayerController : MonoBehaviour
 
             cameraTransform.localPosition = Vector3.zero;
             cameraTransform.localEulerAngles = Vector3.zero;
+
+            pointLight.enabled = true;
         }
     }
 
