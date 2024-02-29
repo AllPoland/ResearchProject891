@@ -49,6 +49,12 @@ public class TerminalScreen : MonoBehaviour
     [NonSerialized] public NoDeleteTerminalWindow MainWindow;
 
 
+    public void EnterTerminal()
+    {
+        TerminalActive = true;
+    }
+
+
     private void UpdateCurrentWindow()
     {
         if(windowHistory.Count < 1)
