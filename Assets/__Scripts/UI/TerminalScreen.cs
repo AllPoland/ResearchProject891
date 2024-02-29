@@ -7,14 +7,19 @@ public class TerminalScreen : MonoBehaviour
     //This class serves as a sort of UI manager, and handles anything the terminal does
     public static TerminalScreen Instance { get; private set; }
 
-    private static bool _terminalActive;
+    private static bool _terminalActive = true;
     public static bool TerminalActive
     {
         get => _terminalActive;
         set
         {
             _terminalActive = value;
+            Debug.Log(_terminalActive ? "Terminal active." : "Terminal inactive.");
+
             EventSystemHelper.Deselect();
+
+            Cursor.visible = _terminalActive;
+            Cursor.lockState = _terminalActive ? CursorLockMode.None : CursorLockMode.Locked;
 
             OnTerminalToggled?.Invoke(_terminalActive);
         }
@@ -28,9 +33,13 @@ public class TerminalScreen : MonoBehaviour
     [SerializeField] private RectTransform optionsMenu;
     [SerializeField] private RectTransform mainMenu;
 
-    [Header("Camera Position")]
-    [SerializeField] private Vector3 TargetCameraPosition;
-    [SerializeField] private Vector3 TargetCameraRotation;
+    [Header("Positioning")]
+    [SerializeField] public Vector3 targetCameraPosition;
+    [SerializeField] public Vector3 targetCameraRotation;
+
+    [Space]
+    [SerializeField] public Vector2 targetPlayerPosition;
+    [SerializeField] public float targetPlayerRotation;
 
     [NonSerialized] public List<TerminalWindow> windowHistory = new List<TerminalWindow>();
     [NonSerialized] public TerminalWindow currentWindow;
@@ -102,7 +111,17 @@ public class TerminalScreen : MonoBehaviour
         OptionsWindow = new NoDeleteTerminalWindow(optionsMenu);
         MainWindow = new NoDeleteTerminalWindow(mainMenu);
 
+        TerminalActive = true;
         SetWindow(StartWindow);
+    }
+
+
+    private void Update()
+    {
+        if(TerminalActive && Input.GetButtonDown("ExitTerminal"))
+        {
+            TerminalActive = false;
+        }
     }
 }
 
