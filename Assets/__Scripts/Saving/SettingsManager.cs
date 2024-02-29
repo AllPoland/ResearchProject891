@@ -16,9 +16,6 @@ public class SettingsManager : MonoBehaviour
         set
         {
             _currentSettings = value;
-
-            // Using the Loaded parameter avoids potentially expensive null checking
-            // every single time a setting is read
             Loaded = _currentSettings != null;
         }
     }
@@ -40,7 +37,6 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private List<SerializedOption<Color>> defaultColors;
 
 
-#if !UNITY_WEBGL || UNITY_EDITOR
     private bool saving;
 
 
@@ -114,34 +110,12 @@ public class SettingsManager : MonoBehaviour
 
         OnSettingsUpdated?.Invoke("all");
     }
-#endif
 
 
     public static bool GetBool(string name)
     {
         bool value;
-#if UNITY_WEBGL && !UNITY_EDITOR
-        if(CurrentSettings.Bools.TryGetValue(name, out value))
-        {
-            return value;
-        }
 
-        //Use ints for bools since PlayerPrefs can't store them
-        int defaultValue = 0;
-        if(Settings.DefaultSettings.Bools.TryGetValue(name, out value))
-        {
-            defaultValue = value ? 1 : 0;
-        }
-
-        //Save the setting to memory so we can avoid expensive PlayerPrefs calls
-        value = PlayerPrefs.GetInt(name, defaultValue) > 0;
-        if(!CurrentSettings.Bools.TryAdd(name, value))
-        {
-            Debug.LogWarning($"Failed to save setting {name} to memory!");
-        }
-
-        return value;
-#else
         if(!Loaded)
         {
             Debug.LogWarning($"Setting {name} was accessed before settings loaded!");
@@ -157,35 +131,13 @@ public class SettingsManager : MonoBehaviour
             return value;
         }
         else return false;
-#endif
     }
 
 
     public static int GetInt(string name)
     {
         int value;
-#if UNITY_WEBGL && !UNITY_EDITOR
-        if(CurrentSettings.Ints.TryGetValue(name, out value))
-        {
-            return value;
-        }
 
-        //Value hasn't been loaded yet
-        int defaultValue = 0;
-        if(Settings.DefaultSettings.Ints.TryGetValue(name, out value))
-        {
-            defaultValue = value;
-        }
-
-        //Save the setting to memory so we can avoid expensive PlayerPrefs calls
-        value = PlayerPrefs.GetInt(name, defaultValue);
-        if(!CurrentSettings.Ints.TryAdd(name, value))
-        {
-            Debug.LogWarning($"Failed to save setting {name} to memory!");
-        }
-
-        return value;
-#else
         if(!Loaded)
         {
             Debug.LogWarning($"Setting {name} was accessed before settings loaded!");
@@ -201,35 +153,13 @@ public class SettingsManager : MonoBehaviour
             return value;
         }
         else return 0;
-#endif
     }
 
 
     public static float GetFloat(string name)
     {
         float value;
-#if UNITY_WEBGL && !UNITY_EDITOR
-        if(CurrentSettings.Floats.TryGetValue(name, out value))
-        {
-            return value;
-        }
 
-        //Value hasn't been loaded yet
-        float defaultValue = 0f;
-        if(Settings.DefaultSettings.Floats.TryGetValue(name, out value))
-        {
-            defaultValue = value;
-        }
-
-        //Save the setting to memory so we can avoid expensive PlayerPrefs calls
-        value = PlayerPrefs.GetFloat(name, defaultValue);
-        if(!CurrentSettings.Floats.TryAdd(name, value))
-        {
-            Debug.LogWarning($"Failed to save setting {name} to memory!");
-        }
-
-        return value;
-#else
         if(!Loaded)
         {
             Debug.LogWarning($"Setting {name} was accessed before settings loaded!");
@@ -245,7 +175,6 @@ public class SettingsManager : MonoBehaviour
             return value;
         }
         else return 0f;
-#endif
     }
 
 
@@ -270,10 +199,6 @@ public class SettingsManager : MonoBehaviour
             rules.Add(name, value);
         }
 
-#if UNITY_WEBGL && !UNITY_EDITOR
-        PlayerPrefs.SetInt(name, value ? 1 : 0);
-#endif
-
         if(notify)
         {
             OnSettingsUpdated?.Invoke(name);
@@ -292,10 +217,6 @@ public class SettingsManager : MonoBehaviour
         {
             rules.Add(name, value);
         }
-
-#if UNITY_WEBGL && !UNITY_EDITOR
-        PlayerPrefs.SetInt(name, value);
-#endif
 
         if(notify)
         {
@@ -320,10 +241,6 @@ public class SettingsManager : MonoBehaviour
         {
             rules.Add(name, value);
         }
-
-#if UNITY_WEBGL && !UNITY_EDITOR
-        PlayerPrefs.SetFloat(name, value);
-#endif
 
         if(notify)
         {
@@ -351,12 +268,7 @@ public class SettingsManager : MonoBehaviour
         bool staticLightsWarningAcknowledged = GetBool("staticlightswarningacknowledged");
         bool replayMode = GetBool("replaymode");
 
-#if UNITY_WEBGL && !UNITY_EDITOR
-        PlayerPrefs.DeleteAll();
-        CurrentSettings = new Settings();
-#else
         CurrentSettings = Settings.GetDefaultSettings();
-#endif
         
         //Some settings should still persist or else they'll be annoying
         SetRule("staticlightswarningacknowledged", staticLightsWarningAcknowledged, false);
@@ -375,15 +287,8 @@ public class SettingsManager : MonoBehaviour
         Settings.DefaultSettings.Floats = Settings.SerializedOptionsToDictionary<float>(defaultFloats);
         Settings.DefaultSettings.AddColorRules(defaultColors);
 
-#if !UNITY_WEBGL || UNITY_EDITOR
-        //Load settings from json if not running in WebGL
-        //Otherwise settings are handled through playerprefs instead
         SaveSettingsStatic = SaveSettings;
         LoadSettings();
-#else
-        CurrentSettings = new Settings();
-        OnSettingsUpdated?.Invoke("all");
-#endif
     }
 }
 
@@ -461,12 +366,8 @@ public class Settings
 
         foreach(SerializedOption<T> option in options)
         {
-#if UNITY_WEBGL
-            T value = option.ValueWebGL.Enabled ? option.ValueWebGL.Value : option.Value;
-            bool success = dictionary.TryAdd(option.Name, value);
-#else
             bool success = dictionary.TryAdd(option.Name, option.Value);
-#endif
+
             if(!success)
             {
                 Debug.LogWarning($"Failed to add setting '{option.Name}'. Is it a duplicate?");
@@ -483,5 +384,4 @@ public struct SerializedOption<T>
 {
     public string Name;
     public T Value;
-    public Optional<T> ValueWebGL;
 }
