@@ -32,8 +32,8 @@ public class TerminalScreen : MonoBehaviour
     [SerializeField] private Vector3 TargetCameraPosition;
     [SerializeField] private Vector3 TargetCameraRotation;
 
-    [NonSerialized] public List<ITerminalWindow> windowHistory = new List<ITerminalWindow>();
-    [NonSerialized] public ITerminalWindow currentWindow;
+    [NonSerialized] public List<TerminalWindow> windowHistory = new List<TerminalWindow>();
+    [NonSerialized] public TerminalWindow currentWindow;
 
     [NonSerialized] public NoDeleteTerminalWindow StartWindow;
     [NonSerialized] public NoDeleteTerminalWindow OptionsWindow;
@@ -47,19 +47,24 @@ public class TerminalScreen : MonoBehaviour
             //oops
             return;
         }
+        
+        TerminalWindow newWindow = windowHistory[windowHistory.Count - 1];
 
-        //Close the current window to make space for the new one
-        currentWindow?.Close();
+        if(newWindow.closePrevious)
+        {
+            //Close the current window to make space for the new one
+            currentWindow?.Close();
+        }
 
         //Set the new window and enable it
-        currentWindow = windowHistory[windowHistory.Count - 1];
+        currentWindow = newWindow;
         currentWindow.Open();
 
         OnWindowUpdated?.Invoke();
     }
 
 
-    public void SetWindow(ITerminalWindow newScreen)
+    public void SetWindow(TerminalWindow newScreen)
     {
         windowHistory.Add(newScreen);
         UpdateCurrentWindow();
@@ -102,58 +107,60 @@ public class TerminalScreen : MonoBehaviour
 }
 
 
-public interface ITerminalWindow
+public abstract class TerminalWindow
 {
-    public void Open();
-    public void Close();
+    public bool closePrevious;
+
+    public abstract void Open();
+    public abstract void Close();
 }
 
 
-public class NoDeleteTerminalWindow : ITerminalWindow
+public class NoDeleteTerminalWindow : TerminalWindow
 {
     public RectTransform target;
 
 
     public NoDeleteTerminalWindow(RectTransform rectTransform)
     {
+        closePrevious = true;
         target = rectTransform;
     }
 
 
-    public void Open()
+    public override void Open()
     {
         target.gameObject.SetActive(true);
     }
 
 
-    public void Close()
+    public override void Close()
     {
         target.gameObject.SetActive(false);
     }
 }
 
 
-public class PrefabTerminalWindow<T> : ITerminalWindow where T : MonoBehaviour
+public class PrefabTerminalWindow<T> : TerminalWindow where T : MonoBehaviour
 {
-    public T prefab;
-    public RectTransform parent;
-
     public T target;
 
 
-    public PrefabTerminalWindow(T prefab)
+    public PrefabTerminalWindow(bool closePrevious, T prefab, RectTransform parent)
     {
-        this.prefab = prefab;
-    }
-
-
-    public void Open()
-    {
+        this.closePrevious = closePrevious;
         target = GameObject.Instantiate<T>(prefab, parent, false);
+        target.gameObject.SetActive(false);
     }
 
 
-    public void Close()
+    public override void Open()
+    {
+        target.gameObject.SetActive(true);
+    }
+
+
+    public override void Close()
     {
         target.gameObject.SetActive(false);
         GameObject.Destroy(target.gameObject);
