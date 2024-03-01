@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class ProgressionManager
 {
@@ -9,6 +10,7 @@ public class ProgressionManager
         set
         {
             _progressionStage = value;
+            Debug.Log("New progression stage: " + ProgressionStage);
             OnProgressionStageUpdated?.Invoke(_progressionStage);
         }
     }
@@ -24,4 +26,10 @@ public struct ProgressionRange
     public int minProgression;
     //Maximum progression stage to enable this object (exclusive)
     public int maxProgression;
+
+
+    public readonly bool CheckInRange(int stage)
+    {
+        return stage >= minProgression && stage < maxProgression;
+    }
 }

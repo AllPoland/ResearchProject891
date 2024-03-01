@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
             cameraTransform.eulerAngles = TerminalScreen.Instance.targetCameraRotation;
 
             pointLight.enabled = false;
+            characterController.enabled = false;
         }
         else
         {
@@ -81,6 +82,7 @@ public class PlayerController : MonoBehaviour
             cameraTransform.localEulerAngles = Vector3.zero;
 
             pointLight.enabled = true;
+            characterController.enabled = true;
         }
     }
 

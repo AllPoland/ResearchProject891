@@ -14,7 +14,7 @@ public abstract class ProgressionUpdater : MonoBehaviour
     {
         foreach(ProgressionRange range in EnableRanges)
         {
-            if(stage >= range.minProgression && stage < range.maxProgression)
+            if(range.CheckInRange(stage))
             {
                 //This object should be enabled
                 Enable();
