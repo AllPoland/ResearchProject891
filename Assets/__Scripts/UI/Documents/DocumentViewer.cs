@@ -50,7 +50,7 @@ public class DocumentViewer : MonoBehaviour
             Text = documentText;
             Callback = callback;
 
-            closePrevious = true;
+            ClosePrevious = true;
         }
 
 

@@ -2,19 +2,22 @@ using UnityEngine;
 
 public class DocumentSelector : MonoBehaviour
 {
+    [Header("Document")]
     [SerializeField] private string documentTitle;
     [SerializeField] private TextAsset documentText;
 
     [Space]
-    [SerializeField] private DocumentViewer documentViewer;
+    [SerializeField] private Optional<PasswordSettings> password;
 
-    [Space]
-    [SerializeField] private ProgressionRange enabledProgressionRange;
+    [Header("Components")]
+    [SerializeField] private DocumentViewer documentViewer;
 
     [Header("Progression Influence")]
     //The progression range where clicking on the document will progress the game
     [SerializeField] private ProgressionRange influenceProgressionRange;
     [SerializeField] private int progressionStageOnOpen;
+
+    private bool passwordUnlocked = false;
 
 
     public void SetProgression()
@@ -27,21 +30,35 @@ public class DocumentSelector : MonoBehaviour
     }
 
 
-    public void OpenDocument()
+    private void OpenViewer()
     {
         documentViewer.OpenDocument(documentTitle, documentText, SetProgression);
     }
 
 
-    private void UpdateProgressionStage(int stage)
+    private void PasswordCallback(bool correct)
     {
-        gameObject.SetActive(enabledProgressionRange.CheckInRange(stage));
+        //If the user didn't get the password correct we don't need to do anything
+        if(correct)
+        {
+            passwordUnlocked = true;
+
+            //Exit the password screen and open the document
+            TerminalScreen.Instance.GoBack();
+            OpenViewer();
+        }
     }
 
 
-    private void Start()
+    public void OpenDocument()
     {
-        ProgressionManager.OnProgressionStageUpdated += UpdateProgressionStage;
-        UpdateProgressionStage(ProgressionManager.ProgressionStage);
+        if(password.Enabled && !passwordUnlocked)
+        {
+            //This document is password locked and the player hasn't gotten the password yet
+            password.Value.StartPasswordPrompt(PasswordCallback);
+            return;
+        }
+
+        OpenViewer();
     }
 }

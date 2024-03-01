@@ -65,7 +65,7 @@ public class TerminalScreen : MonoBehaviour
         
         TerminalWindow newWindow = windowHistory[windowHistory.Count - 1];
 
-        if(newWindow.closePrevious)
+        if(newWindow.ClosePrevious)
         {
             //Close the current window to make space for the new one
             currentWindow?.Close();
@@ -134,7 +134,7 @@ public class TerminalScreen : MonoBehaviour
 
 public abstract class TerminalWindow
 {
-    public bool closePrevious;
+    public bool ClosePrevious;
 
     public abstract void Open();
     public abstract void Close();
@@ -148,7 +148,7 @@ public class NoDeleteTerminalWindow : TerminalWindow
 
     public NoDeleteTerminalWindow(RectTransform rectTransform)
     {
-        closePrevious = true;
+        ClosePrevious = true;
         target = rectTransform;
     }
 
@@ -171,9 +171,9 @@ public class PrefabTerminalWindow<T> : TerminalWindow where T : MonoBehaviour
     public T target;
 
 
-    public PrefabTerminalWindow(bool closePrevious, T prefab, RectTransform parent)
+    public PrefabTerminalWindow(bool ClosePrevious, T prefab, RectTransform parent)
     {
-        this.closePrevious = closePrevious;
+        this.ClosePrevious = ClosePrevious;
         target = GameObject.Instantiate<T>(prefab, parent, false);
         target.gameObject.SetActive(false);
     }

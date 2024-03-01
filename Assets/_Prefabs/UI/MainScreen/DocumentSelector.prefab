@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 6753788682835094409}
   - component: {fileID: 2373210232194229616}
   - component: {fileID: 9133247755265336458}
+  - component: {fileID: 3732174313324345087}
   m_Layer: 3
   m_Name: DocumentSelector
   m_TagString: Untagged
@@ -226,14 +227,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   documentTitle: 
   documentText: {fileID: 0}
+  password:
+    enabled: 0
+    value:
+      Prompt: This document is locked with a passcode.
+      Password: 
+      InputScreen: {fileID: 0}
   documentViewer: {fileID: 0}
-  enabledProgressionRange:
-    minProgression: 0
-    maxProgression: 9999
   influenceProgressionRange:
     minProgression: -1
     maxProgression: -1
   progressionStageOnOpen: -1
+--- !u!114 &3732174313324345087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6537658078017798200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e64a87befd509945a8f978de510a45a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnableRanges:
+  - minProgression: 0
+    maxProgression: 99999
 --- !u!1001 &7840639860204412506
 PrefabInstance:
   m_ObjectHideFlags: 0
