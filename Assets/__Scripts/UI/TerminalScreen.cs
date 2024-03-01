@@ -39,7 +39,7 @@ public class TerminalScreen : MonoBehaviour
 
     [Space]
     [SerializeField] public Vector2 targetPlayerPosition;
-    [SerializeField] public float targetPlayerRotation;
+    [SerializeField] public Vector2 targetPlayerRotation;
 
     [NonSerialized] public List<TerminalWindow> windowHistory = new List<TerminalWindow>();
     [NonSerialized] public TerminalWindow currentWindow;

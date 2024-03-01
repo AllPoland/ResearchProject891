@@ -81,6 +81,7 @@ public class ObjectiveText : MonoBehaviour
     [Serializable]
     public struct ObjectivePrompt
     {
+        [TextArea(1, 3)]
         public string Text;
         public ProgressionRange Range;
     }
