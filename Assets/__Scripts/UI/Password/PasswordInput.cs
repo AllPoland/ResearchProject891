@@ -6,7 +6,10 @@ public class PasswordInput : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI promptText;
     [SerializeField] private TMP_InputField inputField;
-    [SerializeField] private TextMeshProUGUI incorrectText;
+    [SerializeField] private ScrollingText incorrectText;
+
+    [Space]
+    [SerializeField] private string incorrectString = "Incorrect passcode";
 
     private Action<bool> Callback;
     private string Password;
@@ -16,7 +19,7 @@ public class PasswordInput : MonoBehaviour
     {
         //Send back whether the user got the password correct
         bool correct = userInput.Equals(Password, StringComparison.InvariantCultureIgnoreCase);
-        incorrectText.gameObject.SetActive(!correct);
+        incorrectText.SetText(correct ? "" : incorrectString);
 
         Callback(correct);
     }
@@ -26,7 +29,7 @@ public class PasswordInput : MonoBehaviour
     {
         promptText.text = prompt;
         inputField.text = "";
-        incorrectText.gameObject.SetActive(false);
+        incorrectText.SetText("");
 
         Password = password;
         Callback = callback;
@@ -37,7 +40,7 @@ public class PasswordInput : MonoBehaviour
     {
         promptText.text = "";
         inputField.text = "";
-        incorrectText.gameObject.SetActive(false);
+        incorrectText.SetText("");
 
         Password = "";
         Callback = null;

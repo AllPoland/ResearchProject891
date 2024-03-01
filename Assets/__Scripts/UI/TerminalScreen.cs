@@ -124,7 +124,7 @@ public class TerminalScreen : MonoBehaviour
 
     private void Update()
     {
-        if(TerminalActive && Input.GetButtonDown("ExitTerminal"))
+        if(TerminalActive && Input.GetButtonDown("ExitTerminal") && !EventSystemHelper.GetSelectedGameObject())
         {
             TerminalActive = false;
         }
