@@ -6,6 +6,9 @@ public class DocumentSelector : MonoBehaviour
     [SerializeField] private TextAsset documentText;
 
     [Space]
+    [SerializeField] private DocumentViewer documentViewer;
+
+    [Space]
     [SerializeField] private ProgressionRange enabledProgressionRange;
 
     [Header("Progression Influence")]
@@ -14,13 +17,19 @@ public class DocumentSelector : MonoBehaviour
     [SerializeField] private int progressionStageOnOpen;
 
 
-    public void OpenDocument()
+    public void SetProgression()
     {
         if(influenceProgressionRange.CheckInRange(ProgressionManager.ProgressionStage))
         {
             //Opening this document should progress the game
             ProgressionManager.ProgressionStage = progressionStageOnOpen;
         }
+    }
+
+
+    public void OpenDocument()
+    {
+        documentViewer.OpenDocument(documentTitle, documentText, SetProgression);
     }
 
 
