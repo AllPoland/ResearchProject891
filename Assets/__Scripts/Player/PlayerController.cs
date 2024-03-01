@@ -19,8 +19,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 2f;
 
     [Space]
+//Field is never used
+#pragma warning disable 0414
     [SerializeField] private float defaultSensitivityMult = 1f;
     [SerializeField] private float defaultSensitivityWebgl = 1f;
+#pragma warning restore 0414
 
     [Space]
     [SerializeField] private float cameraTransitionTime = 1f;

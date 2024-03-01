@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Text;
 using TMPro;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class ScrollingText : MonoBehaviour
     public bool Scrolling { get; private set;}
 
     [SerializeField] private int charsPerSecond = 20;
+    [SerializeField] private char suffixChar = '_';
 
     private TextMeshProUGUI textMesh;
     private Coroutine scrollCoroutine;
@@ -15,17 +17,40 @@ public class ScrollingText : MonoBehaviour
     private string currentText;
 
 
+    private string ReplaceEndText(string text)
+    {
+        StringBuilder output = new StringBuilder(text);
+        for(int i = 0; i < output.Length; i++)
+        {
+            if(output[i] != '\n')
+            {
+                output[i] = ' ';
+            }
+        }
+        return output.ToString();
+    }
+
+
     private IEnumerator ScrollTextCoroutine()
     {
         Scrolling = true;
         textMesh.text = "";
 
+        int textLength = currentText.Length;
+
         float t = 0f;
-        float scrollTime = (float)currentText.Length / charsPerSecond;
+        float scrollTime = (float)textLength / charsPerSecond;
         while(t < scrollTime)
         {
             int displayChars = (int)(t * charsPerSecond);
-            textMesh.text = currentText[..displayChars];
+
+            string displayedText = currentText[..displayChars];
+            string hiddenText = currentText[displayChars..];
+
+            displayedText += suffixChar;
+            displayedText += ReplaceEndText(hiddenText);
+
+            textMesh.text = displayedText;
 
             t += Time.deltaTime;
             yield return null;

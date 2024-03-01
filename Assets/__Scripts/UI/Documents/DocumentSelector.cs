@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DocumentSelector : MonoBehaviour
 {
@@ -9,8 +10,13 @@ public class DocumentSelector : MonoBehaviour
     [Space]
     [SerializeField] private Optional<PasswordSettings> password;
 
+    [Header("Icons")]
+    [SerializeField] private Sprite unlockedSprite;
+    [SerializeField] private Sprite lockedSprite;
+
     [Header("Components")]
     [SerializeField] private DocumentViewer documentViewer;
+    [SerializeField] private Image buttonImage;
 
     [Header("Progression Influence")]
     //The progression range where clicking on the document will progress the game
@@ -30,9 +36,17 @@ public class DocumentSelector : MonoBehaviour
     }
 
 
+    private void UpdateSprite()
+    {
+        bool unlocked = !password.Enabled || passwordUnlocked;
+        buttonImage.sprite = unlocked ? unlockedSprite : lockedSprite;
+    }
+
+
     private void OpenViewer()
     {
         documentViewer.OpenDocument(documentTitle, documentText, SetProgression);
+        UpdateSprite();
     }
 
 
@@ -60,5 +74,11 @@ public class DocumentSelector : MonoBehaviour
         }
 
         OpenViewer();
+    }
+
+
+    private void OnEnable()
+    {
+        UpdateSprite();
     }
 }
