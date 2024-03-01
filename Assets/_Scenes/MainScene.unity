@@ -274,8 +274,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnableRanges:
-  - minProgression: 2
-    maxProgression: 999
+  - minProgression: 10
+    maxProgression: 9999
 --- !u!1 &35638774
 GameObject:
   m_ObjectHideFlags: 0
@@ -3966,8 +3966,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnableRanges:
-  - minProgression: 1
-    maxProgression: 2
+  - minProgression: 5
+    maxProgression: 6
   enabledMaterial: {fileID: 2100000, guid: bdb99d231fe89074189b0bfa062126c4, type: 2}
   disabledMaterial: {fileID: 2100000, guid: 6443aaad5221b304bb535d71085c0499, type: 2}
 --- !u!1 &1569958133
@@ -4597,8 +4597,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Welcome to S.O.U.P. Research Project 891. Refer to this box for all instructions.
-    Begin by reading document E-891A carefully.
+  m_text: 'Before beginning testing, turn on the observation light.
+
+    Press [X]
+    to stand.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 71d98e2f55c12c04c9d2b43c9ff09797, type: 2}
   m_sharedMaterial: {fileID: 2135863857352367783, guid: 71d98e2f55c12c04c9d2b43c9ff09797, type: 2}
@@ -4706,6 +4708,10 @@ MonoBehaviour:
     Range:
       minProgression: 0
       maxProgression: 1
+  - Text: Before beginning testing, turn on the observation light. Press [X] to stand.
+    Range:
+      minProgression: 5
+      maxProgression: 6
 --- !u!1 &1685800448
 GameObject:
   m_ObjectHideFlags: 0
@@ -5058,8 +5064,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnableRanges:
-  - minProgression: 1
-    maxProgression: 2
+  - minProgression: 5
+    maxProgression: 6
 --- !u!114 &1800771507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5170,7 +5176,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5925,7 +5931,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6537658078017798200, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
       propertyPath: m_Name
-      value: DocumentSelector
+      value: DocumentE-891A
+      objectReference: {fileID: 0}
+    - target: {fileID: 9133247755265336458, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: progressionOnOpen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9133247755265336458, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: progressionStageOnOpen
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9133247755265336458, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: influenceProgressionRange.maxProgression
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9133247755265336458, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: influenceProgressionRange.minProgression
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
