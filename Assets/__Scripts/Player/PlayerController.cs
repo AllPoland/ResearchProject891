@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,6 +7,10 @@ public class PlayerController : MonoBehaviour
 {
     //The simplest, most braindead player controller ever conceived !!!!!!
     //No vertical movement, no velocity, built-in character controller, perfect.
+
+    //This is used to progress the game only when the player is staring at the terminal
+    //Avoids things changing while they're still visible
+    public static event Action OnTerminalTransitionFinished;
 
     private bool terminalActive => TerminalScreen.TerminalActive;
     private Transform cameraTransform => Camera.main.transform;
@@ -62,6 +67,7 @@ public class PlayerController : MonoBehaviour
 
         pointLight.enabled = false;
 
+        OnTerminalTransitionFinished?.Invoke();
         cameraTransitioning = false;
     }
 
@@ -97,6 +103,7 @@ public class PlayerController : MonoBehaviour
 
         pointLight.intensity = lightIntensity;
 
+        OnTerminalTransitionFinished?.Invoke();
         cameraTransitioning = false;
     }
 

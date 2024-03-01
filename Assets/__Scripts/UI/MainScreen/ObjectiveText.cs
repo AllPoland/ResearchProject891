@@ -30,9 +30,9 @@ public class ObjectiveText : MonoBehaviour
         //Find the first prompt that should be used for this stage and display it
         foreach(ObjectivePrompt prompt in prompts)
         {
-            if(prompt.Range.CheckInRange(stage))
+            if(prompt.ProgressionStage == stage)
             {
-                //This prompt should be displayed, start the scrolling thing
+                //This prompt should be displayed, start displaying text
                 scrollingText.SetText(prompt.Text);
                 break;
             }
@@ -83,6 +83,6 @@ public class ObjectiveText : MonoBehaviour
     {
         [TextArea(1, 3)]
         public string Text;
-        public ProgressionRange Range;
+        public int ProgressionStage;
     }
 }

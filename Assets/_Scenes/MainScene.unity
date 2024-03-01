@@ -175,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   background: {fileID: 305351629}
   text: {fileID: 35638776}
-  promptPrefix: '[E] - '
+  promptPrefix: '[E] '
 --- !u!1 &32748257
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,7 +2480,6 @@ GameObject:
   - component: {fileID: 713966557}
   - component: {fileID: 713966556}
   - component: {fileID: 713966559}
-  - component: {fileID: 713966560}
   m_Layer: 3
   m_Name: ScreenCanvas
   m_TagString: Untagged
@@ -2594,36 +2593,6 @@ MonoBehaviour:
   targetCameraRotation: {x: 0, y: 0, z: 0}
   targetPlayerPosition: {x: 0, y: 1.95}
   targetPlayerRotation: {x: 0, y: 20}
---- !u!114 &713966560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 713966554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66df0d911e6772345881deabb553c140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Prompt: Use Terminal
-  MaxDistance: 1.5
-  MaxLookAngle: 45
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 713966559}
-        m_TargetAssemblyTypeName: TerminalScreen, Assembly-CSharp
-        m_MethodName: EnterTerminal
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &725881623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3013,6 +2982,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 798348126}
+  - component: {fileID: 798348127}
+  - component: {fileID: 798348128}
   m_Layer: 3
   m_Name: Terminal
   m_TagString: Untagged
@@ -3037,6 +3008,52 @@ Transform:
   - {fileID: 754604669}
   m_Father: {fileID: 2005327318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &798348127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798348125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4533b0762dc4c114eae3bd217cf539b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enterStages:
+  - StartStage: 10
+    TargetStage: 15
+  exitStages: []
+--- !u!114 &798348128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798348125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66df0d911e6772345881deabb553c140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prompt: Use Terminal
+  MaxDistance: 1.5
+  MaxLookAngle: 45
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 713966559}
+        m_TargetAssemblyTypeName: TerminalScreen, Assembly-CSharp
+        m_MethodName: EnterTerminal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &805027374
 GameObject:
   m_ObjectHideFlags: 0
@@ -3528,7 +3545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1151981841
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5139,8 +5156,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Welcome to S.O.U.P. Research Project 891. Refer to this box for all instructions.
-    Begin by reading document E-891A carefully.
+  m_text: 'Next, you will begin inciting responses.
+
+    Read the document "Stimulation"
+    for more
+
+    information.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 71d98e2f55c12c04c9d2b43c9ff09797, type: 2}
   m_sharedMaterial: {fileID: 2135863857352367783, guid: 71d98e2f55c12c04c9d2b43c9ff09797, type: 2}
@@ -5249,18 +5270,21 @@ MonoBehaviour:
       all instructions.
 
       Begin by reading document E-891A carefully.'
-    Range:
-      minProgression: 0
-      maxProgression: 1
+    ProgressionStage: 0
   - Text: 'Before beginning testing, turn on the
 
-      observation light.
+      observation light in the
+      back corner.
 
-      Press
-      [X] to stand.'
-    Range:
-      minProgression: 5
-      maxProgression: 6
+      Press [X] to stand.'
+    ProgressionStage: 5
+  - Text: 'Next, you will begin inciting responses.
+
+      Read the document "Stimulation"
+      for more
+
+      information.'
+    ProgressionStage: 15
 --- !u!1 &1685800448
 GameObject:
   m_ObjectHideFlags: 0
@@ -6631,6 +6655,148 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1001 &2117822547
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6245436877160367028}
+    m_Modifications:
+    - target: {fileID: 1787918387251391500, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_text
+      value: Stimulation
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787918387251391500, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537658078017798200, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: m_Name
+      value: StimulationProcedures
+      objectReference: {fileID: 0}
+    - target: {fileID: 9133247755265336458, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: documentText
+      value: 
+      objectReference: {fileID: 4900000, guid: f63c9b1e00399b04f9e6649a4cf43c0b, type: 3}
+    - target: {fileID: 9133247755265336458, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: documentTitle
+      value: Stimulation Procedures
+      objectReference: {fileID: 0}
+    - target: {fileID: 9133247755265336458, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: documentViewer
+      value: 
+      objectReference: {fileID: 464919670}
+    - target: {fileID: 9133247755265336458, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: progressionOnOpen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9133247755265336458, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: progressionStageOnOpen
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9133247755265336458, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: enabledProgressionRange.minProgression
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9133247755265336458, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: influenceProgressionRange.maxProgression
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 9133247755265336458, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+      propertyPath: influenceProgressionRange.minProgression
+      value: 15
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+--- !u!224 &2117822548 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
+  m_PrefabInstance: {fileID: 2117822547}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &477371383908389829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6778,7 +6944,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
       propertyPath: m_AnchorMin.x
@@ -6786,7 +6952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -6826,11 +6992,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 135.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6425271625995968901, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6983,6 +7149,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7450471901996147138, guid: e344784c8e7ca00499517eff69717fac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 168403816}
+    - targetCorrespondingSourceObject: {fileID: 7450471901996147138, guid: e344784c8e7ca00499517eff69717fac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2117822548}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e344784c8e7ca00499517eff69717fac, type: 3}
 --- !u!224 &6245436877160367028 stripped
