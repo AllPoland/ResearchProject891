@@ -1,9 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProgressionDisable : MonoBehaviour
+public abstract class ProgressionUpdater : MonoBehaviour
 {
     [SerializeField] public List<ProgressionRange> EnableRanges;
+
+
+    public abstract void Enable();
+    public abstract void Disable();
 
 
     private void UpdateProgressionStage(int stage)
@@ -13,17 +17,17 @@ public class ProgressionDisable : MonoBehaviour
             if(stage >= range.minProgression && stage < range.maxProgression)
             {
                 //This object should be enabled
-                gameObject.SetActive(true);
+                Enable();
                 return;
             }
         }
 
         //The current stage is outside this object's enable range, disable it
-        gameObject.SetActive(false);
+        Disable();
     }
 
 
-    private void Start()
+    public void Start()
     {
         ProgressionManager.OnProgressionStageUpdated += UpdateProgressionStage;
         UpdateProgressionStage(ProgressionManager.ProgressionStage);

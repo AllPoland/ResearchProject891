@@ -1,7 +1,6 @@
 using System;
-using UnityEngine;
 
-public class ProgressionManager : MonoBehaviour
+public class ProgressionManager
 {
     private static int _progressionStage = 0;
     public static int ProgressionStage
@@ -15,4 +14,14 @@ public class ProgressionManager : MonoBehaviour
     }
 
     public static event Action<int> OnProgressionStageUpdated;
+}
+
+
+[Serializable]
+public struct ProgressionRange
+{
+    //Minimum progression stage to enable this object (inclusive)
+    public int minProgression;
+    //Maximum progression stage to enable this object (exclusive)
+    public int maxProgression;
 }
