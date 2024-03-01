@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     [Space]
     [SerializeField] private float defaultSensitivityMult = 1f;
+    [SerializeField] private float defaultSensitivityWebgl = 1f;
 
     [Space]
     [SerializeField] private float cameraTransitionTime = 1f;
@@ -193,7 +194,11 @@ public class PlayerController : MonoBehaviour
     {
         //Read the mouse input and adjust it for sensitivity
         Vector2 delta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+#if UNITY_WEBGL
+        delta *= SettingsManager.GetFloat("camsensitivity") * defaultSensitivityWebgl;
+#else
         delta *= SettingsManager.GetFloat("camsensitivity") * defaultSensitivityMult;
+#endif
 
         //Apply the mouse input to our rotation
         rotation.y = Mathf.Clamp(rotation.y - delta.y, -90f, 90f);

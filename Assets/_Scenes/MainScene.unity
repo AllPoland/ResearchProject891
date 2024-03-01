@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.1
+  m_FogDensity: 0.075
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
@@ -354,7 +354,7 @@ Transform:
   m_GameObject: {fileID: 32748257}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.025, z: 0}
+  m_LocalPosition: {x: 0, y: 4.025, z: -2.25}
   m_LocalScale: {x: 0.5, y: 0.025, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1109,7 +1109,7 @@ Transform:
   m_GameObject: {fileID: 273254756}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.3, z: -0.7}
+  m_LocalPosition: {x: 0, y: 3.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1812,7 +1812,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.9622642, g: 0.8334653, b: 0.14978641, a: 1}
-  m_Intensity: 0.03
+  m_Intensity: 0.1
   m_Range: 1
   m_SpotAngle: 121.027954
   m_InnerSpotAngle: 27.00367
@@ -2090,7 +2090,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.8423917, b: 0.514151, a: 1}
-  m_Intensity: 1.5
+  m_Intensity: 3.5
   m_Range: 5
   m_SpotAngle: 141.23657
   m_InnerSpotAngle: 104.686424
@@ -2875,6 +2875,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3007445410006678018, guid: 7b5271426cf9f274cab080ae3f50952b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 725881626}
+    - targetCorrespondingSourceObject: {fileID: 3007445410006678018, guid: 7b5271426cf9f274cab080ae3f50952b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 725881630}
   m_SourcePrefab: {fileID: 100100000, guid: 7b5271426cf9f274cab080ae3f50952b, type: 3}
 --- !u!224 &725881624 stripped
 RectTransform:
@@ -2898,6 +2901,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a652738b5498594488c3ecaf09d89cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &725881630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725881625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e178ead69819b4e8b1df028162989f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableWebGL: 0
+  enableDesktop: 1
 --- !u!1 &735995430
 GameObject:
   m_ObjectHideFlags: 0
@@ -3976,6 +3993,7 @@ MonoBehaviour:
   playerHeight: 1.8
   speed: 2.5
   defaultSensitivityMult: 2
+  defaultSensitivityWebgl: 1
   cameraTransitionTime: 0.3
   pointLight: {fileID: 85755817}
 --- !u!143 &1225874268
@@ -4395,6 +4413,9 @@ MonoBehaviour:
   defaultFloats:
   - Name: camsensitivity
     Value: 1
+    ValueWebGL:
+      enabled: 0
+      value: 0
   defaultColors: []
 --- !u!1 &1395741258
 GameObject:
@@ -5885,7 +5906,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.8423917, b: 0.514151, a: 1}
-  m_Intensity: 0.05
+  m_Intensity: 0.2
   m_Range: 4.6
   m_SpotAngle: 119.19733
   m_InnerSpotAngle: 96.4217
@@ -6206,7 +6227,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.98039216, g: 0.003921569, b: 0.007843138, a: 1}
-  m_Intensity: 0.0025
+  m_Intensity: 0.004
   m_Range: 0.3
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -6354,7 +6375,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9669811, g: 0.9993466, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 5
   m_Range: 5.75
   m_SpotAngle: 80.62865
   m_InnerSpotAngle: 64.74028
@@ -6435,8 +6456,8 @@ Transform:
   m_Children:
   - {fileID: 972092628}
   - {fileID: 558837035}
-  - {fileID: 1733942295}
   - {fileID: 133937266}
+  - {fileID: 1733942295}
   m_Father: {fileID: 2005327318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1866341898
