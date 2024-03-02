@@ -83,7 +83,7 @@ public class ObjectiveText : MonoBehaviour
     [Serializable]
     public struct ObjectivePrompt
     {
-        [TextArea(1, 3)]
+        [TextArea(1, 4)]
         public string Text;
         public int ProgressionStage;
     }
