@@ -10,10 +10,7 @@ public class PasswordInputButton : MonoBehaviour
     public void InputPassword()
     {
         string userInput = inputField.text;
-        if(!string.IsNullOrEmpty(userInput))
-        {
-            passwordInput.InputPassword(userInput);
-        }
+        passwordInput.InputPassword(userInput);
     }
 
 

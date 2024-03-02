@@ -28,7 +28,7 @@ public class PasswordInput : MonoBehaviour
     public void SetPassword(string prompt, string password, Action<bool> callback)
     {
         promptText.text = prompt;
-        inputField.text = "";
+        inputField.SetTextWithoutNotify("");
         incorrectText.SetText("");
 
         Password = password;
@@ -39,7 +39,7 @@ public class PasswordInput : MonoBehaviour
     public void ClearPassword()
     {
         promptText.text = "";
-        inputField.text = "";
+        inputField.SetTextWithoutNotify("");
         incorrectText.SetText("");
 
         Password = "";

@@ -10,21 +10,36 @@ public class TerminalButtonAudio : MonoBehaviour, IPointerEnterHandler, IPointer
     private bool hovered;
 
 
+    private void PlaySound(TerminalSoundType soundType)
+    {
+        if(TerminalScreen.TerminalActive)
+        {
+            TerminalAudio.PlayTerminalSound(soundType);
+        }
+    }
+
+
     public void PlayClick()
     {
-        TerminalAudio.PlayTerminalSound(TerminalSoundType.Click);
+        PlaySound(TerminalSoundType.Click);
     }
 
 
     public void PlayRelease()
     {
-        TerminalAudio.PlayTerminalSound(TerminalSoundType.Release);
+        PlaySound(TerminalSoundType.Release);
     }
 
 
     public void PlayHover()
     {
-        TerminalAudio.PlayTerminalSound(TerminalSoundType.Hover);
+        PlaySound(TerminalSoundType.Hover);
+    }
+
+
+    public void PlayText()
+    {
+        PlaySound(TerminalSoundType.Text);
     }
 
 

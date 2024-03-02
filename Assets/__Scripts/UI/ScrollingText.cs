@@ -42,7 +42,7 @@ public class ScrollingText : MonoBehaviour
         int textLength = currentText.Length;
 
         int soundsPerSecond = Mathf.Min(charsPerSecond, maxSoundsPerSecond);
-        int soundsPlayed = 0;
+        int soundsPlayed = -1;
 
         float t = 0f;
         float scrollTime = (float)textLength / charsPerSecond;
