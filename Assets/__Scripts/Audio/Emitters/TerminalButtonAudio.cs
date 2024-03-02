@@ -1,13 +1,11 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class TerminalButtonAudio : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
+public class TerminalButtonAudio : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private bool playMouseDownSound = true;
     [SerializeField] private bool playMouseUpSound = true;
     [SerializeField] private bool playHoverSound = true;
-
-    private bool hovered;
 
 
     private void PlaySound(TerminalSoundType soundType)
@@ -45,22 +43,10 @@ public class TerminalButtonAudio : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(hovered)
-        {
-            return;
-        }
-        hovered = true;
-
         if(playHoverSound)
         {
             PlayHover();
         }
-    }
-
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        hovered = false;
     }
 
 
@@ -79,11 +65,5 @@ public class TerminalButtonAudio : MonoBehaviour, IPointerEnterHandler, IPointer
         {
             PlayRelease();
         }
-    }
-
-
-    private void OnDisable()
-    {
-        hovered = false;
     }
 }
