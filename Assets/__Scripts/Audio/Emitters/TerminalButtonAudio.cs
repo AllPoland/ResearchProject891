@@ -8,36 +8,27 @@ public class TerminalButtonAudio : MonoBehaviour, IPointerEnterHandler, IPointer
     [SerializeField] private bool playHoverSound = true;
 
 
-    private void PlaySound(TerminalSoundType soundType)
-    {
-        if(TerminalScreen.TerminalActive)
-        {
-            TerminalAudio.PlayTerminalSound(soundType);
-        }
-    }
-
-
     public void PlayClick()
     {
-        PlaySound(TerminalSoundType.Click);
+        TerminalAudio.PlayTerminalSound(TerminalSoundType.Click);
     }
 
 
     public void PlayRelease()
     {
-        PlaySound(TerminalSoundType.Release);
+        TerminalAudio.PlayTerminalSound(TerminalSoundType.Release);
     }
 
 
     public void PlayHover()
     {
-        PlaySound(TerminalSoundType.Hover);
+        TerminalAudio.PlayTerminalSound(TerminalSoundType.Hover);
     }
 
 
     public void PlayText()
     {
-        PlaySound(TerminalSoundType.Text);
+        TerminalAudio.PlayTerminalSound(TerminalSoundType.Text);
     }
 
 
@@ -52,7 +43,7 @@ public class TerminalButtonAudio : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(playMouseDownSound)
+        if(playMouseDownSound && Input.GetMouseButtonDown(0))
         {
             PlayClick();
         }
@@ -61,7 +52,7 @@ public class TerminalButtonAudio : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if(playMouseUpSound)
+        if(playMouseUpSound && Input.GetMouseButtonUp(0))
         {
             PlayRelease();
         }

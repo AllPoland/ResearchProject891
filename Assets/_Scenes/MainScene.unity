@@ -2203,7 +2203,6 @@ GameObject:
   - component: {fileID: 639402031}
   - component: {fileID: 639402034}
   - component: {fileID: 639402033}
-  - component: {fileID: 639402032}
   m_Layer: 3
   m_Name: UpperSupport
   m_TagString: Untagged
@@ -2226,27 +2225,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 69269964}
   m_LocalEulerAnglesHint: {x: -10, y: 0, z: 0}
---- !u!65 &639402032
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 639402030}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &639402033
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2809,7 +2787,6 @@ GameObject:
   - component: {fileID: 703699179}
   - component: {fileID: 703699182}
   - component: {fileID: 703699181}
-  - component: {fileID: 703699180}
   m_Layer: 3
   m_Name: UpperLight
   m_TagString: Untagged
@@ -2833,27 +2810,6 @@ Transform:
   - {fileID: 803974371}
   m_Father: {fileID: 69269964}
   m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
---- !u!65 &703699180
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703699178}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &703699181
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3478,7 +3434,6 @@ GameObject:
   - component: {fileID: 754604669}
   - component: {fileID: 754604672}
   - component: {fileID: 754604671}
-  - component: {fileID: 754604674}
   m_Layer: 3
   m_Name: Monitor
   m_TagString: Untagged
@@ -3555,40 +3510,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754604668}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &754604674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754604668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b701b129883a59489e7b2833e71b12e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clickSounds:
-    Clips:
-    - {fileID: 8300000, guid: fdea8449d5bb58f45ba561cfc5122058, type: 3}
-    - {fileID: 8300000, guid: b47ab69136865b846950a555a18f4f55, type: 3}
-    - {fileID: 8300000, guid: 4d9b69d880f5cfa4194efdf8761e50b7, type: 3}
-  releaseSounds:
-    Clips:
-    - {fileID: 8300000, guid: bd4a69cecf9f7004297db6a50ea18ca8, type: 3}
-    - {fileID: 8300000, guid: 98d29bdc9525de14f91801adbc3d6131, type: 3}
-    - {fileID: 8300000, guid: 09b41c5142f70064f9cc1e60e76c33e4, type: 3}
-  hoverSounds:
-    Clips:
-    - {fileID: 8300000, guid: 812ad5299c2eaf34595c90f3af2f336b, type: 3}
-  textSounds:
-    Clips:
-    - {fileID: 8300000, guid: ff4e15862e9a23943af5de147fdbb281, type: 3}
-  clickSource: {fileID: 1665569730}
-  releaseSource: {fileID: 1523866472}
-  hoverSource: {fileID: 2100073310}
-  textSource: {fileID: 1156849707}
-  notableSource: {fileID: 1474847636}
-  backgroundSource: {fileID: 982848071}
 --- !u!1001 &782751184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4615,8 +4536,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 225
   DopplerLevel: 0
-  MinDistance: 0.75
-  MaxDistance: 2
+  MinDistance: 1
+  MaxDistance: 3
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -5473,8 +5394,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 75
   DopplerLevel: 0
-  MinDistance: 0.75
-  MaxDistance: 2
+  MinDistance: 1
+  MaxDistance: 3
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -5830,8 +5751,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 100
   DopplerLevel: 0
-  MinDistance: 0.75
-  MaxDistance: 2
+  MinDistance: 1
+  MaxDistance: 3
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -7082,8 +7003,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 100
   DopplerLevel: 0
-  MinDistance: 0.75
-  MaxDistance: 2
+  MinDistance: 1
+  MaxDistance: 3
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -7791,7 +7712,6 @@ GameObject:
   - component: {fileID: 1859109452}
   - component: {fileID: 1859109455}
   - component: {fileID: 1859109454}
-  - component: {fileID: 1859109453}
   m_Layer: 3
   m_Name: Board
   m_TagString: Untagged
@@ -7814,27 +7734,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 69269964}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1859109453
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859109451}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1859109454
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8567,6 +8466,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2033314119}
+  - component: {fileID: 2033314120}
   m_Layer: 3
   m_Name: Audio
   m_TagString: Untagged
@@ -8595,6 +8495,40 @@ Transform:
   - {fileID: 982848070}
   m_Father: {fileID: 754604669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2033314120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033314118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b701b129883a59489e7b2833e71b12e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSounds:
+    Clips:
+    - {fileID: 8300000, guid: a7e65d27863ed4449aae48a161389184, type: 3}
+    - {fileID: 8300000, guid: e570fda45ca16584d96afc8e37ffe0bf, type: 3}
+    - {fileID: 8300000, guid: a498350d0f534fa438ffd01702d70ebd, type: 3}
+  releaseSounds:
+    Clips:
+    - {fileID: 8300000, guid: 9cdfb5043462f9843b93c8bc7c0c870d, type: 3}
+    - {fileID: 8300000, guid: 3f8ab4f5653a11a4b83fff25d41b98ec, type: 3}
+    - {fileID: 8300000, guid: 3a835664739793b4aa933b245a8419ea, type: 3}
+  hoverSounds:
+    Clips:
+    - {fileID: 8300000, guid: b1fbcce3212869d458436f79cd81a89a, type: 3}
+  textSounds:
+    Clips:
+    - {fileID: 8300000, guid: ff4e15862e9a23943af5de147fdbb281, type: 3}
+  clickSource: {fileID: 1665569730}
+  releaseSource: {fileID: 1523866472}
+  hoverSource: {fileID: 2100073310}
+  textSource: {fileID: 1156849707}
+  notableSource: {fileID: 1474847636}
+  backgroundSource: {fileID: 982848071}
 --- !u!1 &2056417580
 GameObject:
   m_ObjectHideFlags: 0
@@ -8789,8 +8723,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 200
   DopplerLevel: 0
-  MinDistance: 0.75
-  MaxDistance: 2
+  MinDistance: 1
+  MaxDistance: 3
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

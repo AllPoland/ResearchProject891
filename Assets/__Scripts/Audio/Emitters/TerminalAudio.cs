@@ -44,7 +44,16 @@ public class TerminalAudio : MonoBehaviour
             return;
         }
 
-        source.Stop();
+#if UNITY_WEBGL && !UNITY_EDITOR
+        //SUUUUUUUUUUPER hacky fix for a weird audio bug
+        //Webgl refuses to update spatial stuff when the camera and source haven't moved
+        //which leads sounds potentially always playing from the direction they were when
+        //when the player was last moving during a sound
+
+        //This fixes the issue by moving the audio source a tiny bit to poke Webgl into updating
+        source.transform.localPosition = new Vector3(UnityEngine.Random.Range(-0.01f, 0.01f), 0f);
+#endif
+
         source.clip = clip;
         source.Play();
     }

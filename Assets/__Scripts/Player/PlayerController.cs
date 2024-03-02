@@ -197,7 +197,7 @@ public class PlayerController : MonoBehaviour
     {
         //Read the mouse input and adjust it for sensitivity
         Vector2 delta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-#if UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
         delta *= SettingsManager.GetFloat("camsensitivity") * defaultSensitivityWebgl;
 #else
         delta *= SettingsManager.GetFloat("camsensitivity") * defaultSensitivityMult;
