@@ -7,6 +7,8 @@ public class TerminalButtonAudio : MonoBehaviour, IPointerEnterHandler, IPointer
     [SerializeField] private bool playMouseUpSound = true;
     [SerializeField] private bool playHoverSound = true;
 
+    private bool clicked;
+
 
     public void PlayClick()
     {
@@ -22,7 +24,10 @@ public class TerminalButtonAudio : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void PlayHover()
     {
-        TerminalAudio.PlayTerminalSound(TerminalSoundType.Hover);
+        if(!clicked)
+        {
+            TerminalAudio.PlayTerminalSound(TerminalSoundType.Hover);
+        }
     }
 
 
@@ -47,6 +52,8 @@ public class TerminalButtonAudio : MonoBehaviour, IPointerEnterHandler, IPointer
         {
             PlayClick();
         }
+
+        clicked = true;
     }
 
 
@@ -56,5 +63,29 @@ public class TerminalButtonAudio : MonoBehaviour, IPointerEnterHandler, IPointer
         {
             PlayRelease();
         }
+
+        clicked = false;
+    }
+
+
+    private void UpdateTerminalActive(bool terminalActive)
+    {
+        if(!terminalActive)
+        {
+            clicked = false;
+        }
+    }
+
+
+    private void OnEnable()
+    {
+        TerminalScreen.OnTerminalToggled += UpdateTerminalActive;
+    }
+
+
+    private void OnDisable()
+    {
+        clicked = false;
+        TerminalScreen.OnTerminalToggled -= UpdateTerminalActive;
     }
 }

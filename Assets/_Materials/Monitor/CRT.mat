@@ -89,9 +89,9 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _CosAmp: 0.1
+    - _CosAmp: 0.15
     - _CosBright: 0
-    - _CosOffset: 1
+    - _CosOffset: 0.95
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -103,7 +103,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _LineCount: 450
+    - _LineCount: 400
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
