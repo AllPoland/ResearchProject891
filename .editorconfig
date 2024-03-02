@@ -131,3 +131,6 @@ dotnet_diagnostic.IDE0051.severity = none
 
 # IDE0056: Use index operator
 dotnet_diagnostic.IDE0056.severity = none
+
+# IDE0066: Convert switch statement to expression
+dotnet_diagnostic.IDE0066.severity = none
