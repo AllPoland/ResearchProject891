@@ -11,6 +11,9 @@ public class ScrollingText : MonoBehaviour
     [SerializeField] private int charsPerSecond = 20;
     [SerializeField] private char suffixChar = '_';
 
+    [SerializeField] private bool playSound = true;
+    [SerializeField] private int maxSoundsPerSecond = 15;
+
     private TextMeshProUGUI textMesh;
     private Coroutine scrollCoroutine;
 
@@ -38,6 +41,9 @@ public class ScrollingText : MonoBehaviour
 
         int textLength = currentText.Length;
 
+        int soundsPerSecond = Mathf.Min(charsPerSecond, maxSoundsPerSecond);
+        int soundsPlayed = 0;
+
         float t = 0f;
         float scrollTime = (float)textLength / charsPerSecond;
         while(t < scrollTime)
@@ -51,6 +57,16 @@ public class ScrollingText : MonoBehaviour
             displayedText += ReplaceEndText(hiddenText);
 
             textMesh.text = displayedText;
+
+            if(playSound)
+            {
+                int soundIndex = (int)(t * soundsPerSecond);
+                if(soundIndex > soundsPlayed)
+                {
+                    TerminalAudio.PlayTerminalSound(TerminalSoundType.Text);
+                    soundsPlayed = soundIndex;
+                }
+            }
 
             t += Time.deltaTime;
             yield return null;

@@ -5,20 +5,19 @@ using UnityEngine;
 public class TerminalAudio : MonoBehaviour
 {
     private static event Action<TerminalSoundType> OnSoundTriggered;
+    private static event Action<AudioClip, TerminalSoundType> OnCustomSoundTriggered;
 
     [Header("Clips")]
     [SerializeField] private RandomSound clickSounds;
     [SerializeField] private RandomSound releaseSounds;
     [SerializeField] private RandomSound hoverSounds;
-
-    [Space]
-    [SerializeField] private AudioClip bigTextSound;
-    [SerializeField] private AudioClip smallTextSound;
+    [SerializeField] private RandomSound textSounds;
 
     [Header("Sources")]
     [SerializeField] private AudioSource clickSource;
     [SerializeField] private AudioSource releaseSource;
     [SerializeField] private AudioSource hoverSource;
+    [SerializeField] private AudioSource textSource;
 
     [Space]
     [SerializeField] private AudioSource notableSource;
@@ -31,8 +30,20 @@ public class TerminalAudio : MonoBehaviour
     }
 
 
+    public static void PlayTerminalSound(TerminalSoundType soundType, AudioClip clip)
+    {
+        OnCustomSoundTriggered?.Invoke(clip, soundType);
+    }
+
+
     private void StartSound(AudioSource source, AudioClip clip)
     {
+        if(clip == null)
+        {
+            Debug.LogWarning("Tried to play a null AudioClip!");
+            return;
+        }
+
         source.Stop();
         source.clip = clip;
         source.Play();
@@ -52,6 +63,32 @@ public class TerminalAudio : MonoBehaviour
             case TerminalSoundType.Hover:
                 StartSound(hoverSource, hoverSounds.GetClip());
                 return;
+            case TerminalSoundType.Text:
+                StartSound(textSource, textSounds.GetClip());
+                return;
+        }
+    }
+
+
+    private void PlaySound(AudioClip clip, TerminalSoundType soundType)
+    {
+        switch(soundType)
+        {
+            case TerminalSoundType.Click:
+                StartSound(clickSource, clip);
+                return;
+            case TerminalSoundType.Release:
+                StartSound(releaseSource, clip);
+                return;
+            case TerminalSoundType.Hover:
+                StartSound(hoverSource, clip);
+                return;
+            case TerminalSoundType.Text:
+                StartSound(textSource, clip);
+                return;
+            case TerminalSoundType.Notable:
+                StartSound(notableSource, clip);
+                return;
         }
     }
 
@@ -59,6 +96,7 @@ public class TerminalAudio : MonoBehaviour
     private void Start()
     {
         OnSoundTriggered += PlaySound;
+        OnCustomSoundTriggered += PlaySound;
     }
 }
 
@@ -68,8 +106,8 @@ public enum TerminalSoundType
     Click,
     Release,
     Hover,
-    TextBig,
-    TextSmall
+    Text,
+    Notable
 }
 
 

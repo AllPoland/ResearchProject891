@@ -6,6 +6,7 @@ using UnityEngine;
 public class ObjectiveText : MonoBehaviour
 {
     [SerializeField] private List<ObjectivePrompt> prompts;
+    [SerializeField] private AudioClip messageClip;
 
     private ScrollingText scrollingText;
     private int knownStage = -1;
@@ -33,6 +34,7 @@ public class ObjectiveText : MonoBehaviour
             if(prompt.ProgressionStage == stage)
             {
                 //This prompt should be displayed, start displaying text
+                TerminalAudio.PlayTerminalSound(TerminalSoundType.Notable, messageClip);
                 scrollingText.SetText(prompt.Text);
                 break;
             }
