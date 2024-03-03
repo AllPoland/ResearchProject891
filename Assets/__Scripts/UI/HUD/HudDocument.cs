@@ -65,7 +65,7 @@ public class HudDocument : MonoBehaviour
         float t = 0f;
         while(t < 1f)
         {
-            float positionTransition = Easings.Cubic.Out(t);
+            float positionTransition = Easings.Quad.Out(t);
             float rotationTransition = Easings.Sine.Out(t);
 
             float angle = Mathf.Lerp(startRotation, shownRotation, rotationTransition);
