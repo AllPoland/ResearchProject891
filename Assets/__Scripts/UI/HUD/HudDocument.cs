@@ -33,8 +33,8 @@ public class HudDocument : MonoBehaviour
     private static event Action<TextAsset> OnDocumentOpened;
 
     [Header("Components")]
-    [SerializeField] private GameObject documentContainer;
     [SerializeField] private RectTransform documentTransform;
+    [SerializeField] private GameObject closePrompt;
     [SerializeField] private TextMeshProUGUI textMesh;
 
     [Header("Animation")]
@@ -104,7 +104,7 @@ public class HudDocument : MonoBehaviour
         documentTransform.anchoredPosition = hiddenPosition;
         documentTransform.localEulerAngles = new Vector3(0f, 0f, hiddenRotation);
 
-        documentContainer.SetActive(false);
+        documentTransform.gameObject.SetActive(false);
 
         animating = false;
     }
@@ -112,7 +112,8 @@ public class HudDocument : MonoBehaviour
 
     public void ShowDocument(TextAsset documentText, bool animate = true)
     {
-        documentContainer.SetActive(true);
+        documentTransform.gameObject.SetActive(true);
+        closePrompt.SetActive(true);
         textMesh.text = documentText.text;
 
         DocumentActive = true;
@@ -139,6 +140,7 @@ public class HudDocument : MonoBehaviour
     public void HideDocument(bool animate = true)
     {
         DocumentActive = false;
+        closePrompt.SetActive(false);
 
         if(animating)
         {
@@ -155,7 +157,7 @@ public class HudDocument : MonoBehaviour
         {
             documentTransform.anchoredPosition = hiddenPosition;
             documentTransform.localEulerAngles = new Vector3(0f, 0f, hiddenRotation);
-            documentContainer.SetActive(false);
+            documentTransform.gameObject.SetActive(false);
         }
     }
 

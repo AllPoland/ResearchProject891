@@ -2831,7 +2831,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 794668225}
+  - {fileID: 1402294380}
+  - {fileID: 1394706849}
   m_Father: {fileID: 2103851636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -2851,10 +2852,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907b3efc33664e94997b8e6dfb9f4241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  documentContainer: {fileID: 794668224}
   documentTransform: {fileID: 1402294380}
+  closePrompt: {fileID: 1394706848}
   textMesh: {fileID: 361334282}
-  animationTime: 0.5
+  animationTime: 0.3
   hiddenPosition: {x: -60, y: -1000}
   hiddenRotation: 10
   shownPosition: {x: 0, y: 0}
@@ -4665,43 +4666,6 @@ Transform:
   - {fileID: 1274003015}
   m_Father: {fileID: 2005327318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &794668224
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 794668225}
-  m_Layer: 5
-  m_Name: DocumentContainer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &794668225
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794668224}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1402294380}
-  - {fileID: 1394706849}
-  m_Father: {fileID: 577010022}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &798348125
 GameObject:
   m_ObjectHideFlags: 0
@@ -6605,7 +6569,7 @@ RectTransform:
   m_Children:
   - {fileID: 1341410078}
   - {fileID: 809738546}
-  m_Father: {fileID: 794668225}
+  m_Father: {fileID: 577010022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -6717,7 +6681,7 @@ RectTransform:
   m_Children:
   - {fileID: 19423421}
   - {fileID: 1290550919}
-  m_Father: {fileID: 794668225}
+  m_Father: {fileID: 577010022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8528,7 +8492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81e502f01fbfa444b2a998954cace18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charsPerSecond: 20
+  charsPerSecond: 30
   suffixChar: 95
   playSound: 1
   maxSoundsPerSecond: 15
@@ -10558,8 +10522,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3920153}
   - {fileID: 577010022}
+  - {fileID: 3920153}
   m_Father: {fileID: 1732104747}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
