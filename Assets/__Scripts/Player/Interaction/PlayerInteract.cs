@@ -95,9 +95,13 @@ public class PlayerInteract : MonoBehaviour
 
     private void Update()
     {
-        if(!TerminalScreen.TerminalActive)
+        if(!TerminalScreen.TerminalActive && !HudDocument.DocumentActive)
         {
             HandleInteract();
+        }
+        else
+        {
+            OnTargetChanged?.Invoke(null);
         }
     }
 

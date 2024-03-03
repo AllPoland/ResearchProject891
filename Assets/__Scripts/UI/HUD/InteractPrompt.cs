@@ -44,5 +44,6 @@ public class InteractPrompt : MonoBehaviour
     private void OnDisable()
     {
         PlayerInteract.OnTargetChanged -= UpdateInteractable;
+        UpdateInteractable(null);
     }
 }

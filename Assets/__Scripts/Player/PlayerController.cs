@@ -258,7 +258,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(terminalActive)
+        if(terminalActive || HudDocument.DocumentActive)
         {
             //Disable input while the terminal is being used
             velocity = Vector2.zero;
