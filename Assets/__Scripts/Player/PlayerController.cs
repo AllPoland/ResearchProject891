@@ -207,14 +207,22 @@ public class PlayerController : MonoBehaviour
         float forwardInput = Input.GetAxis("Forward");
         float sidewaysInput = Input.GetAxis("Sideways");
 
-        velocity = transform.forward * forwardInput + transform.right * sidewaysInput;
-        velocity.y = 0;
+        Vector3 newVelocity = transform.forward * forwardInput + transform.right * sidewaysInput;
+        newVelocity.y = 0;
 
-        if(velocity.sqrMagnitude > 1f)
+        if(newVelocity.sqrMagnitude > 1f)
         {
-            velocity.Normalize();
+            newVelocity.Normalize();
         }
-        velocity *= speed;
+        newVelocity *= speed;
+
+        if(newVelocity.sqrMagnitude > 0.001f != velocity.sqrMagnitude > 0.001f || Vector3.Dot(newVelocity, velocity) < 0)
+        {
+            //The player has started/stopped walking or swapped direction
+            OnPlayerShuffle?.Invoke();
+        }
+
+        velocity = newVelocity;
     }
 
 

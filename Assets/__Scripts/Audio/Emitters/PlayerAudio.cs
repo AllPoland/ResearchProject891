@@ -29,7 +29,10 @@ public class PlayerAudio : MonoBehaviour
 
     public void PlayFootShuffle()
     {
-        PlayClip(shuffleSounds.GetClip());
+        if(!source.isPlaying)
+        {
+            PlayClip(shuffleSounds.GetClip());
+        }
     }
 
 
