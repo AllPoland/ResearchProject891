@@ -86,6 +86,13 @@ public class TerminalScreen : MonoBehaviour
     }
 
 
+    public void SetWindowTransform(RectTransform newScreen)
+    {
+        NoDeleteTerminalWindow newWindow = new NoDeleteTerminalWindow(newScreen);
+        SetWindow(newWindow);
+    }
+
+
     public void GoBack()
     {
         if(windowHistory.Count <= 1)
