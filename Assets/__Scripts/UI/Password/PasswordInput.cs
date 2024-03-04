@@ -33,6 +33,8 @@ public class PasswordInput : MonoBehaviour
 
         Password = password;
         Callback = callback;
+
+        EventSystemHelper.SetSelectedGameObject(inputField.gameObject);
     }
 
 

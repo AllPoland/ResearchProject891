@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool terminalActive => TerminalScreen.TerminalActive;
     private Transform cameraTransform => Camera.main.transform;
 
+    [Header("Configuration")]
     [SerializeField] private float playerHeight = 1.8f;
     [SerializeField] private float speed = 2f;
 
@@ -27,9 +29,20 @@ public class PlayerController : MonoBehaviour
 
     [Space]
     [SerializeField] private float cameraTransitionTime = 1f;
+    [SerializeField] private float footstepLength = 1f;
+    [SerializeField] private float headBobAmplitude = 0.25f;
+    [SerializeField] private float footstepDecay = 10f;
 
     [Space]
+    [SerializeField] private float breathTime = 2f;
+    [SerializeField] private float breathAmplitude = 0.025f;
+
+    [Header("Components")]
     [SerializeField] private Light pointLight;
+
+    [Space]
+    [SerializeField] public UnityEvent OnPlayerStep;
+    [SerializeField] public UnityEvent OnPlayerShuffle;
 
     private CharacterController characterController;
 
@@ -38,12 +51,24 @@ public class PlayerController : MonoBehaviour
 
     private float lightIntensity;
 
+    private Vector3 previousFootstepPos;
+    private float footstepOffset;
+
+    private float breathProgress;
+    private float breathOffset;
+
     private bool cameraTransitioning;
     private Coroutine cameraTransitionCoroutine;
 
     //Forces the camera to instantly go to its proper place the first time
     //the terminal is updated (scuffed)
     private bool cameraInitialized = false;
+
+
+    private Vector3 GetCameraPos()
+    {
+        return new Vector3(0f, footstepOffset + breathOffset - (headBobAmplitude / 2), 0f);
+    }
 
 
     private IEnumerator EnterTerminalCoroutine(Vector3 startPos, Vector2 startRotation, Vector3 targetPos, Vector2 targetRotation)
@@ -86,7 +111,7 @@ public class PlayerController : MonoBehaviour
         float t = 0f;
         while(t < 1f)
         {
-            Vector3 targetPos = transform.position;
+            Vector3 targetPos = transform.position + GetCameraPos();
             
             float lerp = Easings.Quad.Out(t);
             cameraTransform.position = Vector3.Lerp(startPos, targetPos, lerp);
@@ -101,7 +126,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         
-        cameraTransform.localPosition = Vector3.zero;
+        cameraTransform.localPosition = GetCameraPos();
         cameraTransform.localEulerAngles = new Vector3(rotation.y, 0f, 0f);
         transform.eulerAngles = new Vector3(0f, rotation.x, 0f);
 
@@ -127,7 +152,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            cameraTransform.localPosition = Vector3.zero;
+            cameraTransform.localPosition = GetCameraPos();
             cameraTransform.localEulerAngles = new Vector3(rotation.y, 0f, 0f);
             transform.eulerAngles = new Vector3(0f, rotation.x, 0f);
 
@@ -217,6 +242,34 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    private void UpdateFootstep(bool moving)
+    {
+        float targetFootstepOffset = 0f;
+
+        //If the player isn't moving, the camera should settle to 0
+        if(moving)
+        {
+            float stepDistance = Vector3.Distance(transform.position, previousFootstepPos);
+            float stepProgress = (stepDistance / footstepLength * 2) * Mathf.PI;
+
+            targetFootstepOffset = Mathf.Sin(stepProgress) * headBobAmplitude;
+        }
+
+        //Smoothly move the camera to its target position
+        float travelDistance = Mathf.Abs(footstepOffset - targetFootstepOffset) * footstepDecay * Time.deltaTime;
+        footstepOffset = Mathf.MoveTowards(footstepOffset, targetFootstepOffset, travelDistance);
+    }
+
+
+    private void UpdateBreath()
+    {
+        breathProgress += Time.deltaTime / breathTime;
+        breathProgress = Mathf.Repeat(breathProgress, 1f);
+
+        breathOffset = Mathf.Sin(breathProgress * 2 * Mathf.PI) * breathAmplitude;
+    }
+
+
     private void UpdateTerminalActive(bool terminalActive)
     {
         if(terminalActive)
@@ -231,6 +284,8 @@ public class PlayerController : MonoBehaviour
 
             transform.position = new Vector3(newPos.x, playerHeight, newPos.y);
             rotation = TerminalScreen.Instance.targetPlayerRotation;
+
+            previousFootstepPos = transform.position;
 
             //Maintain the camera's position to not break the transition
             cameraTransform.position = cameraPos;
@@ -258,6 +313,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(!terminalActive)
+        {
+            //Always update camera motion if we're not in the terminal
+            UpdateBreath();
+            if(HudDocument.DocumentActive)
+            {
+                //If a document is open, act as if the player isn't moving for head bob
+                UpdateFootstep(false);
+            }
+            cameraTransform.localPosition = GetCameraPos();
+        }
+
         if(terminalActive || HudDocument.DocumentActive)
         {
             //Disable input while the terminal is being used
@@ -269,9 +336,26 @@ public class PlayerController : MonoBehaviour
             UpdateCamera();
             //Get the player movement and change our velocity accordingly
             UpdateVelocity();
-            
+
             //Update the transform position
             characterController.Move(velocity * Time.deltaTime);
+
+            bool moving = velocity.sqrMagnitude > 0.001f;
+            float footstepDistance = Vector3.Distance(transform.position, previousFootstepPos);
+            if(footstepDistance >= footstepLength)
+            {
+                //The player has moved far enough to perform a step
+                OnPlayerStep?.Invoke();
+                previousFootstepPos = transform.position;
+            }
+            else if(!moving)
+            {
+                //Steps should decay while the player isn't moving
+                float travelDistance = footstepDistance * footstepDecay * Time.deltaTime;
+                previousFootstepPos = Vector3.MoveTowards(previousFootstepPos, transform.position, travelDistance);
+            }
+
+            UpdateFootstep(moving);
         }
     }
 }
