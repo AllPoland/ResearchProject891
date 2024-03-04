@@ -330,7 +330,11 @@ public class PlayerController : MonoBehaviour
                 //If a document is open, act as if the player isn't moving for head bob
                 UpdateFootstep(false);
             }
-            cameraTransform.localPosition = GetCameraPos();
+
+            if(!cameraTransitioning)
+            {
+                cameraTransform.localPosition = GetCameraPos();
+            }
         }
 
         if(terminalActive || HudDocument.DocumentActive)
