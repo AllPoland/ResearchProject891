@@ -385,6 +385,12 @@ public class SettingsManager : MonoBehaviour
         OnSettingsUpdated?.Invoke("all");
 #endif
     }
+
+
+    private void OnDestroy()
+    {
+        SaveSettingsStatic = null;
+    }
 }
 
 
