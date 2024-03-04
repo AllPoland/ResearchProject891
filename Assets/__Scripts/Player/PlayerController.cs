@@ -51,9 +51,11 @@ public class PlayerController : MonoBehaviour
 
     private float lightIntensity;
 
+    private float footstepBob => headBobAmplitude * SettingsManager.GetFloat("headbob");
     private Vector3 previousFootstepPos;
     private float footstepOffset;
 
+    private float breathBob => breathAmplitude * SettingsManager.GetFloat("headbob");
     private float breathProgress;
     private float breathOffset;
 
@@ -260,7 +262,7 @@ public class PlayerController : MonoBehaviour
             float stepDistance = Vector3.Distance(transform.position, previousFootstepPos);
             float stepProgress = (stepDistance / footstepLength * 2) * Mathf.PI;
 
-            targetFootstepOffset = Mathf.Sin(stepProgress) * headBobAmplitude;
+            targetFootstepOffset = Mathf.Sin(stepProgress) * footstepBob;
         }
 
         //Smoothly move the camera to its target position
@@ -274,7 +276,7 @@ public class PlayerController : MonoBehaviour
         breathProgress += Time.deltaTime / breathTime;
         breathProgress = Mathf.Repeat(breathProgress, 1f);
 
-        breathOffset = Mathf.Sin(breathProgress * 2 * Mathf.PI) * breathAmplitude;
+        breathOffset = Mathf.Sin(breathProgress * 2 * Mathf.PI) * breathBob;
     }
 
 
