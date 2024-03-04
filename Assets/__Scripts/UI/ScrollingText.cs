@@ -2,11 +2,15 @@ using System.Collections;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class ScrollingText : MonoBehaviour
 {
     public bool Scrolling { get; private set;}
+
+    [TextArea(9, 9)]
+    public string text;
 
     [SerializeField] private int charsPerSecond = 20;
     [SerializeField] private char suffixChar = '_';
@@ -14,10 +18,11 @@ public class ScrollingText : MonoBehaviour
     [SerializeField] private bool playSound = true;
     [SerializeField] private int maxSoundsPerSecond = 15;
 
+    [Space]
+    [SerializeField] public UnityEvent OnFinishScrolling;
+
     private TextMeshProUGUI textMesh;
     private Coroutine scrollCoroutine;
-
-    private string currentText;
 
 
     private string ReplaceEndText(string text)
@@ -39,7 +44,7 @@ public class ScrollingText : MonoBehaviour
         Scrolling = true;
         textMesh.text = "";
 
-        int textLength = currentText.Length;
+        int textLength = text.Length;
 
         int soundsPerSecond = Mathf.Min(charsPerSecond, maxSoundsPerSecond);
         int soundsPlayed = -1;
@@ -50,8 +55,8 @@ public class ScrollingText : MonoBehaviour
         {
             int displayChars = (int)(t * charsPerSecond);
 
-            string displayedText = currentText[..displayChars];
-            string hiddenText = currentText[displayChars..];
+            string displayedText = text[..displayChars];
+            string hiddenText = text[displayChars..];
 
             displayedText += suffixChar;
             displayedText += ReplaceEndText(hiddenText);
@@ -73,8 +78,10 @@ public class ScrollingText : MonoBehaviour
         }
 
         //Set the text to the full thing at the very end in case something doesn't work idk
-        textMesh.text = currentText;
+        textMesh.text = text;
         Scrolling = false;
+
+        OnFinishScrolling?.Invoke();
     }
 
 
@@ -88,6 +95,11 @@ public class ScrollingText : MonoBehaviour
         if(Scrolling)
         {
             StopCoroutine(scrollCoroutine);
+        }
+
+        if(text == null)
+        {
+            text = textMesh.text;
         }
 
         scrollCoroutine = StartCoroutine(ScrollTextCoroutine());
@@ -115,14 +127,35 @@ public class ScrollingText : MonoBehaviour
         }
 
         StopScroll();
-        textMesh.text = currentText;
+        textMesh.text = text;
+
+        OnFinishScrolling?.Invoke();
     }
 
 
     public void SetText(string newText)
     {
-        currentText = newText;
+        text = newText;
         StartScroll();
+    }
+
+
+    private void OnEnable()
+    {
+        if(!textMesh)
+        {
+            textMesh = GetComponent<TextMeshProUGUI>();
+        }
+
+        if(text == null)
+        {
+            text = textMesh.text;
+        }
+
+        if(!Scrolling)
+        {
+            textMesh.text = ReplaceEndText(text);
+        }
     }
 
 

@@ -1,11 +1,13 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DocumentViewer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private ScrollingText text;
+    [SerializeField] private Image soupIcon;
     [SerializeField] private RectTransform contentTransform;
 
 
@@ -15,6 +17,7 @@ public class DocumentViewer : MonoBehaviour
 
         title.text = documentName;
         text.SetText(documentText.text);
+        soupIcon.enabled = false;
     }
 
 

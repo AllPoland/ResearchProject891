@@ -430,10 +430,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81e502f01fbfa444b2a998954cace18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: 
   charsPerSecond: 100
   suffixChar: 95
   playSound: 1
   maxSoundsPerSecond: 15
+  OnFinishScrolling:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!224 &8845273 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1229011358336288132, guid: 816cadc4825c4864a8a27f762306c481, type: 3}
@@ -862,7 +866,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.02
-  m_Range: 6
+  m_Range: 4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1223,10 +1227,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81e502f01fbfa444b2a998954cace18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: 'Confidential property of
+
+    S.O.U.P. Incorporated
+
+
+    Any unauthorized
+    access is strictly
+
+    forbidden
+
+
+
+    ----- For the survival of mankind -----'
   charsPerSecond: 1000
   suffixChar: 95
-  playSound: 0
+  playSound: 1
   maxSoundsPerSecond: 15
+  OnFinishScrolling:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &150653125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2084,6 +2104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: {fileID: 218730620}
   text: {fileID: 1965501667}
+  soupIcon: {fileID: 1546271578}
   contentTransform: {fileID: 2020816468}
 --- !u!1 &467973231
 GameObject:
@@ -8618,10 +8639,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81e502f01fbfa444b2a998954cace18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: 
   charsPerSecond: 30
   suffixChar: 95
   playSound: 1
   maxSoundsPerSecond: 15
+  OnFinishScrolling:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1664535655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9947,10 +9972,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81e502f01fbfa444b2a998954cace18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: 
   charsPerSecond: 1000
   suffixChar: 95
   playSound: 1
   maxSoundsPerSecond: 15
+  OnFinishScrolling:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 150653124}
+        m_TargetAssemblyTypeName: ScrollingText, Assembly-CSharp
+        m_MethodName: StartScroll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1546271578}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1965501668
 MonoBehaviour:
   m_ObjectHideFlags: 0
