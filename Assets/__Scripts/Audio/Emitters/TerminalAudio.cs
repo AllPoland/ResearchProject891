@@ -125,6 +125,9 @@ public class RandomSound
 {
     public List<AudioClip> Clips;
 
+    private int previousIdx = -1;
+    private int streak = 1;
+
 
     public AudioClip GetClip()
     {
@@ -133,7 +136,28 @@ public class RandomSound
             return null;
         }
 
-        int index = (int)Mathf.Floor(UnityEngine.Random.Range(0, Clips.Count));
+        int index = 0;
+        for(int i = 0; i < streak; i++)
+        {
+            //Reroll the sound again if it's a repeat, up to the number of times we've already repeated
+            //Kind of a scuffed way to weight the odds and reduce repeat sounds
+            index = (int)Mathf.Floor(UnityEngine.Random.Range(0, Clips.Count));
+            if(index != previousIdx)
+            {
+                break;
+            }
+        }
+
+        if(index == previousIdx)
+        {
+            streak++;
+        }
+        else
+        {
+            previousIdx = index;
+            streak = 1;
+        }
+
         return Clips[index];
     }
 }
