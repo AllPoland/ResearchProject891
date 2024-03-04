@@ -18,6 +18,8 @@ public class ScrollingText : MonoBehaviour
     [SerializeField] private bool playSound = true;
     [SerializeField] private int maxSoundsPerSecond = 15;
 
+    [SerializeField] private bool startHidden = false;
+
     [Space]
     [SerializeField] public UnityEvent OnFinishScrolling;
 
@@ -147,12 +149,7 @@ public class ScrollingText : MonoBehaviour
             textMesh = GetComponent<TextMeshProUGUI>();
         }
 
-        if(text == null)
-        {
-            text = textMesh.text;
-        }
-
-        if(!Scrolling)
+        if(startHidden)
         {
             textMesh.text = ReplaceEndText(text);
         }

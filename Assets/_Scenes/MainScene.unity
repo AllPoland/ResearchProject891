@@ -435,6 +435,7 @@ MonoBehaviour:
   suffixChar: 95
   playSound: 1
   maxSoundsPerSecond: 15
+  startHidden: 0
   OnFinishScrolling:
     m_PersistentCalls:
       m_Calls: []
@@ -1217,6 +1218,7 @@ MonoBehaviour:
   suffixChar: 95
   playSound: 1
   maxSoundsPerSecond: 15
+  startHidden: 1
   OnFinishScrolling:
     m_PersistentCalls:
       m_Calls: []
@@ -3193,9 +3195,9 @@ MonoBehaviour:
   textMesh: {fileID: 361334282}
   animationTime: 0.3
   hiddenPosition: {x: -60, y: -1000}
-  hiddenRotation: 10
+  maxHiddenRotation: 40
   shownPosition: {x: 0, y: 0}
-  shownRotation: 0
+  maxShownRotation: 1.5
 --- !u!1 &595669885
 GameObject:
   m_ObjectHideFlags: 0
@@ -4013,7 +4015,6 @@ GameObject:
   - component: {fileID: 707702653}
   - component: {fileID: 707702656}
   - component: {fileID: 707702655}
-  - component: {fileID: 707702654}
   m_Layer: 3
   m_Name: PaperStack
   m_TagString: Untagged
@@ -4036,27 +4037,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1475194771}
   m_LocalEulerAnglesHint: {x: 0, y: -5, z: 0}
---- !u!65 &707702654
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 707702652}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &707702655
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8916,6 +8896,7 @@ MonoBehaviour:
   suffixChar: 95
   playSound: 1
   maxSoundsPerSecond: 15
+  startHidden: 0
   OnFinishScrolling:
     m_PersistentCalls:
       m_Calls: []
@@ -10350,6 +10331,7 @@ MonoBehaviour:
   suffixChar: 95
   playSound: 1
   maxSoundsPerSecond: 15
+  startHidden: 0
   OnFinishScrolling:
     m_PersistentCalls:
       m_Calls:
@@ -11754,7 +11736,7 @@ PrefabInstance:
       objectReference: {fileID: 4900000, guid: 913f831d030bc8a4bbe2a1ecf5411fd4, type: 3}
     - target: {fileID: 6623851361474243979, guid: 5bb8f6e48ac7d9b4f86c45f643c51ac6, type: 3}
       propertyPath: m_Name
-      value: Ouroboros
+      value: Scribblings
       objectReference: {fileID: 0}
     - target: {fileID: 6623851361474243979, guid: 5bb8f6e48ac7d9b4f86c45f643c51ac6, type: 3}
       propertyPath: m_StaticEditorFlags

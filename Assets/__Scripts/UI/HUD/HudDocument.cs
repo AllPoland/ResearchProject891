@@ -41,12 +41,12 @@ public class HudDocument : MonoBehaviour
     [SerializeField] private float animationTime = 1f;
 
     [Space]
-    [SerializeField] private Vector2 hiddenPosition;
-    [SerializeField] private float hiddenRotation;
+    [SerializeField] private Vector2 hiddenPosition = Vector2.zero;
+    [SerializeField] private float maxHiddenRotation = 10f;
 
     [Space]
-    [SerializeField] private Vector2 shownPosition;
-    [SerializeField] private float shownRotation;
+    [SerializeField] private Vector2 shownPosition = Vector2.zero;
+    [SerializeField] private float maxShownRotation = 3f;
 
     private bool animating;
     private Coroutine animationCoroutine;
@@ -58,9 +58,17 @@ public class HudDocument : MonoBehaviour
     }
 
 
+    private static float RandomRotation(float max)
+    {
+        return UnityEngine.Random.Range(-max, max);
+    }
+
+
     private IEnumerator ShowDocumentCoroutine(Vector2 startPos, float startRotation)
     {
         animating = true;
+
+        float targetRotation = RandomRotation(maxShownRotation);
 
         float t = 0f;
         while(t < 1f)
@@ -68,7 +76,7 @@ public class HudDocument : MonoBehaviour
             float positionTransition = Easings.Quad.Out(t);
             float rotationTransition = Easings.Sine.Out(t);
 
-            float angle = Mathf.Lerp(startRotation, shownRotation, rotationTransition);
+            float angle = Mathf.Lerp(startRotation, targetRotation, rotationTransition);
             documentTransform.anchoredPosition = Vector2.Lerp(startPos, shownPosition, positionTransition);
             documentTransform.localEulerAngles = new Vector3(0f, 0f, angle);
 
@@ -77,7 +85,7 @@ public class HudDocument : MonoBehaviour
         }
 
         documentTransform.anchoredPosition = shownPosition;
-        documentTransform.localEulerAngles = new Vector3(0f, 0f, shownRotation);
+        documentTransform.localEulerAngles = new Vector3(0f, 0f, targetRotation);
 
         animating = false;
     }
@@ -87,13 +95,15 @@ public class HudDocument : MonoBehaviour
     {
         animating = true;
 
+        float targetRotation = RandomRotation(maxHiddenRotation);
+
         float t = 0f;
         while(t < 1f)
         {
             float positionTransition = Easings.Quad.In(t);
             float rotationTransition = Easings.Sine.In(t);
 
-            float angle = Mathf.Lerp(startRotation, hiddenRotation, rotationTransition);
+            float angle = Mathf.Lerp(startRotation, targetRotation, rotationTransition);
             documentTransform.anchoredPosition = Vector2.Lerp(startPos, hiddenPosition, positionTransition);
             documentTransform.localEulerAngles = new Vector3(0f, 0f, angle);
 
@@ -102,7 +112,7 @@ public class HudDocument : MonoBehaviour
         }
 
         documentTransform.anchoredPosition = hiddenPosition;
-        documentTransform.localEulerAngles = new Vector3(0f, 0f, hiddenRotation);
+        documentTransform.localEulerAngles = new Vector3(0f, 0f, targetRotation);
 
         documentTransform.gameObject.SetActive(false);
 
@@ -127,12 +137,18 @@ public class HudDocument : MonoBehaviour
         {
             Vector2 startPos = documentTransform.anchoredPosition;
             float startRotation = documentTransform.eulerAngles.z;
+
+            if(startRotation > 180f)
+            {
+                startRotation -= 360f;
+            }
+
             animationCoroutine = StartCoroutine(ShowDocumentCoroutine(startPos, startRotation));
         }
         else
         {
             documentTransform.anchoredPosition = shownPosition;
-            documentTransform.localEulerAngles = new Vector3(0f, 0f, shownRotation);
+            documentTransform.localEulerAngles = new Vector3(0f, 0f, RandomRotation(maxShownRotation));
         }
     }
 
@@ -151,12 +167,18 @@ public class HudDocument : MonoBehaviour
         {
             Vector2 startPos = documentTransform.anchoredPosition;
             float startRotation = documentTransform.eulerAngles.z;
+
+            if(startRotation > 180f)
+            {
+                startRotation -= 360f;
+            }
+
             animationCoroutine = StartCoroutine(HideDocumentCoroutine(startPos, startRotation));
         }
         else
         {
             documentTransform.anchoredPosition = hiddenPosition;
-            documentTransform.localEulerAngles = new Vector3(0f, 0f, hiddenRotation);
+            documentTransform.localEulerAngles = new Vector3(0f, 0f, RandomRotation(maxHiddenRotation));
             documentTransform.gameObject.SetActive(false);
         }
     }
