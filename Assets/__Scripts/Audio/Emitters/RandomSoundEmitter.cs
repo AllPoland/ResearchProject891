@@ -52,7 +52,7 @@ public class RandomSound
         {
             //Reroll the sound again if it's a repeat, up to the number of times we've already repeated
             //Kind of a scuffed way to weight the odds and reduce repeat sounds
-            index = (int)Mathf.Floor(UnityEngine.Random.Range(0, Clips.Count));
+            index = UnityEngine.Random.Range(0, Clips.Count);
             if(index != previousIdx)
             {
                 break;
