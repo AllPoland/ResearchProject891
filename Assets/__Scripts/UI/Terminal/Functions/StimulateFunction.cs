@@ -143,5 +143,6 @@ public class StimulateFunction : MonoBehaviour
     private void OnEnable()
     {
         StartGame();
+        OnStimulateFunctionTriggered?.Invoke();
     }
 }
