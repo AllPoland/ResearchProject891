@@ -21,10 +21,10 @@ aligned by a researcher. Capacitors come in
 3 forms - positive, negative, or neutral, and
 must be connected to matching static pylons.
 
-When opening the stimulation screen, you will
-be met with 4 pylons, each surronded by 4
-capacitors. Click the arrows on a pylon to
-move the nearby capacitors.
+On the Stimulation screen, you will see 4
+pylons, each surrounded by 4 capacitors.
+Click the arrows on a pylon to move the
+nearby capacitors.
 
 For alignment to work, each type of capacitor
 needs to be positioned differently.
