@@ -65,7 +65,7 @@ public class ZapSequence : MonoBehaviour
         while(t < 1f)
         {
             zapLight.color = Color.Lerp(chargeStartColor, chargeEndColor, t);
-            zapLight.intensity = Mathf.Lerp(chargeStartBrightness, chargeEndBrightness, Easings.Quad.In(t));
+            zapLight.intensity = Mathf.Lerp(chargeStartBrightness, chargeEndBrightness, Easings.Quad.Out(t));
 
             t += Time.deltaTime / chargeTime;
             yield return null;
