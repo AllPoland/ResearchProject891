@@ -1,19 +1,22 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class StimulateFunction : MonoBehaviour
 {
     //Manages the stimulate minigame, a mini rotating puzzle
     public static event Action OnStimulateFunctionTriggered;
 
-    [Header("Components")]
     [SerializeField] private List<StimulateChargeIcon> chargeIcons;
 
     [SerializeField] private StimulateDisc bottomLeftDisc;
     [SerializeField] private StimulateDisc topLeftDisc;
     [SerializeField] private StimulateDisc bottomRightDisc;
     [SerializeField] private StimulateDisc topRightDisc;
+
+    [Space]
+    [SerializeField] public UnityEvent OnFunctionTriggered;
 
 
     private bool CheckWinState()
@@ -46,6 +49,7 @@ public class StimulateFunction : MonoBehaviour
         bottomRightDisc.Deactivate();
         topRightDisc.Deactivate();
 
+        OnFunctionTriggered?.Invoke();
         OnStimulateFunctionTriggered?.Invoke();
     }
 
