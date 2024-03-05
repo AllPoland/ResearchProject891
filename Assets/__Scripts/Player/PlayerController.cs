@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float footstepLength = 1f;
     [SerializeField] private float headBobAmplitude = 0.25f;
     [SerializeField] private float footstepDecay = 10f;
+    [SerializeField] private float forceStepTimeMult = 1.2f;
 
     [Space]
     [SerializeField] private float breathTime = 2f;
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
     private float lightIntensity;
 
     private float footstepBob => headBobAmplitude * SettingsManager.GetFloat("headbob");
+    private float footstepTimeProgress;
     private Vector3 previousFootstepPos;
     private float footstepOffset;
 
@@ -262,7 +264,7 @@ public class PlayerController : MonoBehaviour
             float stepDistance = Vector3.Distance(transform.position, previousFootstepPos);
             float stepProgress = (stepDistance / footstepLength * 2) * Mathf.PI;
 
-            targetFootstepOffset = Mathf.Sin(stepProgress) * footstepBob;
+            targetFootstepOffset = Mathf.Sin(Mathf.Max(stepProgress, footstepTimeProgress)) * footstepBob;
         }
 
         //Smoothly move the camera to its target position
@@ -354,19 +356,29 @@ public class PlayerController : MonoBehaviour
             //Update the transform position
             characterController.Move(velocity * Time.deltaTime);
 
-            bool moving = velocity.sqrMagnitude > 0.001f;
+            float speed = velocity.magnitude;
+            bool moving = speed > 0.001f;
             float footstepDistance = Vector3.Distance(transform.position, previousFootstepPos);
-            if(footstepDistance >= footstepLength)
+
+            if(moving)
+            {
+                footstepTimeProgress += (velocity.magnitude / (footstepLength * forceStepTimeMult)) * Time.deltaTime;
+            }
+
+            if(footstepDistance >= footstepLength || footstepTimeProgress >= 1f)
             {
                 //The player has moved far enough to perform a step
                 OnPlayerStep?.Invoke();
                 previousFootstepPos = transform.position;
+                footstepTimeProgress = 0f;
             }
             else if(!moving)
             {
                 //Steps should decay while the player isn't moving
-                float travelDistance = footstepDistance * footstepDecay * Time.deltaTime;
+                float decayMult = footstepDecay * Time.deltaTime;
+                float travelDistance = footstepDistance * decayMult;
                 previousFootstepPos = Vector3.MoveTowards(previousFootstepPos, transform.position, travelDistance);
+                footstepTimeProgress = Mathf.MoveTowards(footstepTimeProgress, 0f, footstepTimeProgress * decayMult);
             }
 
             UpdateFootstep(moving);
