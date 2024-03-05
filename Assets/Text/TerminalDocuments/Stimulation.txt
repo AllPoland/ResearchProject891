@@ -1,1 +1,44 @@
-Testing
+STIMULATION FUNCTION ENABLED
+
+> Testing Procedures: Stimulation
+
+---------------------------------------------
+
+To encourage activity from the entity, a
+moderate electrostatic shock will be
+administered. This procedure has proven to
+improve data quality and quantity when
+researching Aberration class entities.
+
+Like all standard research procedures, human
+intervention is required. Click on the
+"Stimulation" function in the terminal's main
+screen to begin.
+
+In order to generate enough power for a
+strong shock, the capacitors must be properly
+aligned by a researcher. Capacitors come in
+3 forms - positive, negative, or neutral, and
+must be connected to matching static pylons.
+
+When opening the stimulation screen, you will
+be met with 4 pylons, each surronded by 4
+capacitors. Click the arrows on a pylon to
+move the nearby capacitors.
+
+For alignment to work, each type of capacitor
+needs to be positioned differently.
+
+Positive capacitors must be next to only a
+positive pylon.
+
+Negative capacitors must be next to only a
+negative pylon.
+
+Neutral capacitors must be in between two
+pylons with opposing charge.
+
+Once all capacitors are aligned, the
+stimulating shock will be performed, and
+research equipment will begin recording all
+activity data.

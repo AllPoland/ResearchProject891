@@ -10,7 +10,7 @@ making full use of this state-of-the-art
 Facility Access Terminal (patent pending) to
 interact with the subject in complete safety.
 
-All results from this experiment will be
+All data from this experiment will be
 recorded through automated devices within the
 containment cell. No human measurements will
 be required.
