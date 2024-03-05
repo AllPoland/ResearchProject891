@@ -354,7 +354,9 @@ public class PlayerController : MonoBehaviour
             UpdateVelocity();
 
             //Update the transform position
+            Vector3 startPos = transform.position;
             characterController.Move(velocity * Time.deltaTime);
+            velocity = transform.position - startPos;
 
             float speed = velocity.magnitude;
             bool moving = speed > 0.001f;
@@ -362,7 +364,7 @@ public class PlayerController : MonoBehaviour
 
             if(moving)
             {
-                footstepTimeProgress += (velocity.magnitude / (footstepLength * forceStepTimeMult)) * Time.deltaTime;
+                footstepTimeProgress += (speed / (footstepLength * forceStepTimeMult)) * Time.deltaTime;
             }
 
             if(footstepDistance >= footstepLength || footstepTimeProgress >= 1f)

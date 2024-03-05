@@ -58,6 +58,12 @@ public class LightSwitch : MonoBehaviour
     }
 
 
+    public void Toggle()
+    {
+        SetFlipped(!flipped);
+    }
+
+
     public void SetFlippedNoAnimation(bool flip)
     {
         if(flip == flipped)

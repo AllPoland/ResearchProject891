@@ -11,7 +11,9 @@ public class PlayerAudio : MonoBehaviour
 
     private AudioSource source;
 
-    private float shuffleCooldown;
+    //Initialize with a bit of cooldown as a spaghetti way to avoid
+    //playing the sound right when the game starts
+    private float shuffleCooldown = 0.1f;
 
 
     private void PlayClip(AudioClip clip)

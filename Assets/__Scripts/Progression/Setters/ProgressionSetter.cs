@@ -6,4 +6,13 @@ public class ProgressionSetter : MonoBehaviour
     {
         ProgressionManager.ProgressionStage = stage;
     }
+
+
+    public void SetProgression(string stageString)
+    {
+        if(int.TryParse(stageString, out int stage))
+        {
+            SetProgression(stage);
+        }
+    }
 }
