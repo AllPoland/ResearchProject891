@@ -15,13 +15,13 @@ intervention is required. Click on the
 "Stimulation" function in the terminal's main
 screen to begin.
 
-In order to generate enough power for a
-strong shock, the capacitors must be properly
+To generate sufficient enough power for a
+strong shock, all capacitors need to be
 aligned by a researcher. Capacitors come in
 3 forms - positive, negative, or neutral, and
-must be connected to matching static pylons.
+must be placed next to matching pylons.
 
-On the Stimulation screen, you will see 4
+On the Stimulation screen, there are 4 static
 pylons, each surrounded by 4 capacitors.
 Click the arrows on a pylon to move the
 nearby capacitors.

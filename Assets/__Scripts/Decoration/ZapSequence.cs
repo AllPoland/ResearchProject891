@@ -37,6 +37,11 @@ public class ZapSequence : MonoBehaviour
     [SerializeField] private Vector2 lightningYZMin = new Vector2(-1f, -1f);
     [SerializeField] private Vector2 lightningYZMax = Vector2.one;
 
+    [Header("Progression")]
+    [SerializeField] private ProgressionRange influenceProgressionRange;
+    [SerializeField] private int progressionOnComplete;
+    [SerializeField] private int progressionOnCompleteOutsideTerminal;
+
     private bool animationActive;
 
 
@@ -191,6 +196,14 @@ public class ZapSequence : MonoBehaviour
             yield return null;
         }
 
+        //Update progression right when zapping completes
+        if(influenceProgressionRange.CheckInRange(ProgressionManager.ProgressionStage))
+        {
+            int newStage = TerminalScreen.TerminalActive ? progressionOnComplete : progressionOnCompleteOutsideTerminal;
+            ProgressionManager.ProgressionStage = newStage;
+        }
+
+        //Start the cooldown
         zapLight.enabled = false;
         SetLightningActive(false);
 

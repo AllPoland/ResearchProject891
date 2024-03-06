@@ -9,7 +9,7 @@ public class ScrollingText : MonoBehaviour
 {
     public bool Scrolling { get; private set;}
 
-    [TextArea(9, 9)]
+    [TextArea(4, 6)]
     public string text;
 
     [SerializeField] private int charsPerSecond = 20;

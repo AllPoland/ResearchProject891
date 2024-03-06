@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class StimulateFunction : MonoBehaviour
 {
@@ -16,7 +17,19 @@ public class StimulateFunction : MonoBehaviour
     [SerializeField] private StimulateDisc topRightDisc;
 
     [Space]
+    [SerializeField] private Image[] backgrounds;
+
+    [Space]
     [SerializeField] public UnityEvent OnFunctionTriggered;
+
+
+    private void SetBackgroundsActive(bool active)
+    {
+        foreach(Image image in backgrounds)
+        {
+            image.enabled = active;
+        }
+    }
 
 
     private bool CheckWinState()
@@ -49,6 +62,8 @@ public class StimulateFunction : MonoBehaviour
         bottomRightDisc.Deactivate();
         topRightDisc.Deactivate();
 
+        SetBackgroundsActive(false);
+
         OnFunctionTriggered?.Invoke();
         OnStimulateFunctionTriggered?.Invoke();
     }
@@ -64,7 +79,6 @@ public class StimulateFunction : MonoBehaviour
         foreach(StimulateChargeIcon chargeIcon in chargeIcons)
         {
             int randomIndex = UnityEngine.Random.Range(0, unusedPositions.Count);
-            Debug.Log($"{randomIndex}, {unusedPositions.Count}");
             int newPosition = unusedPositions[randomIndex];
 
             //Positions go from top left, reading left-to-right before going down a row
@@ -142,6 +156,7 @@ public class StimulateFunction : MonoBehaviour
 
     private void OnEnable()
     {
+        SetBackgroundsActive(true);
         StartGame();
     }
 }
