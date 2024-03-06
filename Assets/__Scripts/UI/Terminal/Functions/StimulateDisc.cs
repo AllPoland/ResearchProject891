@@ -140,35 +140,39 @@ public class StimulateDisc : MonoBehaviour
     public void UpdateIcons(bool updateGame = true)
     {
         chargeIcons[0].UpdatePosition(upDisc, charge);
-        UpBar.enabled = chargeIcons[0].correctPos;
+        bool useUpBar = chargeIcons[0].charge != 0 && chargeIcons[0].correctPos;
+        UpBar.enabled = useUpBar;
         if(upDisc)
         {
             upDisc.chargeIcons[2] = chargeIcons[0];
-            upDisc.DownBar.enabled = chargeIcons[0].correctPos;
+            upDisc.DownBar.enabled = useUpBar;
         }
 
         chargeIcons[2].UpdatePosition(downDisc, charge);
-        DownBar.enabled = chargeIcons[2].correctPos;
+        bool useDownBar = chargeIcons[2].charge != 0 && chargeIcons[2].correctPos;
+        DownBar.enabled = useDownBar;
         if(downDisc)
         {
             downDisc.chargeIcons[0] = chargeIcons[2];
-            downDisc.UpBar.enabled = chargeIcons[2].correctPos;
+            downDisc.UpBar.enabled = useDownBar;
         }
 
         chargeIcons[3].UpdatePosition(leftDisc, charge);
-        LeftBar.enabled = chargeIcons[3].correctPos;
+        bool useLeftBar = chargeIcons[3].charge != 0 && chargeIcons[3].correctPos;
+        LeftBar.enabled = useLeftBar;
         if(leftDisc)
         {
             leftDisc.chargeIcons[1] = chargeIcons[3];
-            leftDisc.RightBar.enabled = chargeIcons[3].correctPos;
+            leftDisc.RightBar.enabled = useLeftBar;
         }
 
         chargeIcons[1].UpdatePosition(rightDisc, charge);
-        RightBar.enabled = chargeIcons[1].correctPos;
+        bool useRightBar = chargeIcons[1].charge != 0 && chargeIcons[1].correctPos;
+        RightBar.enabled = useRightBar;
         if(rightDisc)
         {
             rightDisc.chargeIcons[3] = chargeIcons[1];
-            rightDisc.LeftBar.enabled = chargeIcons[1].correctPos;
+            rightDisc.LeftBar.enabled = useRightBar;
         }
 
         UpdateIconPositions();
