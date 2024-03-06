@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class InspireKey : MonoBehaviour
+public class InspireKey : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private InspireFunction parentFunction;
 
@@ -13,5 +14,11 @@ public class InspireKey : MonoBehaviour
     {
         parentFunction.PlayNote(noteType);
         TerminalAudio.PlayTerminalSound(TerminalSoundType.Notable, clip);
+    }
+
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        PlayNote();
     }
 }
