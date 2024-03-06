@@ -22,6 +22,8 @@ public class StimulateFunction : MonoBehaviour
     [Space]
     [SerializeField] public UnityEvent OnFunctionTriggered;
 
+    private bool gameActive = false;
+
 
     private void SetBackgroundsActive(bool active)
     {
@@ -66,6 +68,8 @@ public class StimulateFunction : MonoBehaviour
 
         OnFunctionTriggered?.Invoke();
         OnStimulateFunctionTriggered?.Invoke();
+
+        gameActive = false;
     }
 
 
@@ -150,13 +154,19 @@ public class StimulateFunction : MonoBehaviour
             //Reroll if we end up with the win state
             //Hopefully nobody rolls a win thousands of times in a row
             StartGame();
+            return;
         }
+
+        gameActive = true;
     }
 
 
     private void OnEnable()
     {
-        SetBackgroundsActive(true);
-        StartGame();
+        if(!gameActive)
+        {
+            SetBackgroundsActive(true);
+            StartGame();
+        }
     }
 }
