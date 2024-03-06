@@ -12230,8 +12230,8 @@ GameObject:
   - component: {fileID: 1664535651}
   - component: {fileID: 1664535653}
   - component: {fileID: 1664535655}
-  - component: {fileID: 1664535654}
   - component: {fileID: 1664535652}
+  - component: {fileID: 1664535654}
   m_Layer: 3
   m_Name: ObjectiveText
   m_TagString: Untagged
@@ -12278,14 +12278,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Stimulation complete.
+  m_text: 'The "Stimulate" function has been enabled.
 
-    Increased entity activity detected.
+    Perform the Stimulation
+    procedure as
 
-    Continue
-    with the next testing procedure:
-
-    "Inspire"'
+    described in the document.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 71d98e2f55c12c04c9d2b43c9ff09797, type: 2}
   m_sharedMaterial: {fileID: 2135863857352367783, guid: 71d98e2f55c12c04c9d2b43c9ff09797, type: 2}
@@ -12435,6 +12433,13 @@ MonoBehaviour:
 
       first experimental procedure.'
     ProgressionStage: 15
+  - Text: 'The "Stimulate" function has been enabled.
+
+      Perform the Stimulation
+      procedure as
+
+      described in the document.'
+    ProgressionStage: 20
   - Text: 'Stimulation complete.
 
       Increased entity activity detected.
