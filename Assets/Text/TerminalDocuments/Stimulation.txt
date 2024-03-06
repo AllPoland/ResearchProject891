@@ -35,8 +35,7 @@ positive pylon.
 Negative capacitors must be next to only a
 negative pylon.
 
-Neutral capacitors must be in between two
-pylons with opposing charge.
+Neutral capacitors may be placed anywhere.
 
 Once all capacitors are aligned, the
 stimulating shock will be performed, and

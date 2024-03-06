@@ -6,7 +6,7 @@ public class StimulateChargeIcon : MonoBehaviour
 {
     [NonSerialized] public bool Rotating;
     [NonSerialized] public int ParentCharge;
-    public bool correctPos => charge == 0 ? isInside : !isInside && charge == ParentCharge;
+    public bool correctPos => charge == 0 || (!isInside && charge == ParentCharge);
 
     //0 - neutral, 1 - positive, 2 - negative
     [SerializeField] public int charge;
