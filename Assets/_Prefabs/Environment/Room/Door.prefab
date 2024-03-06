@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66df0d911e6772345881deabb553c140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prompt: Open Door
+  Prompt: Open
   MaxDistance: 1
   MaxLookAngle: 45
   OnInteract:
