@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class HudDocumentOpen : MonoBehaviour
 {
     [SerializeField] private TextAsset documentText;
+    [SerializeField] private TextAsset entityText;
 
     [Space]
     [SerializeField] public UnityEvent OnCloseDocument;
@@ -13,10 +14,10 @@ public class HudDocumentOpen : MonoBehaviour
 
     public void OpenDocument()
     {
-        if(documentText != null)
+        if(documentText || entityText)
         {
             active = true;
-            HudDocument.OpenDocument(documentText);
+            HudDocument.OpenDocument(documentText, entityText);
         }
     }
 

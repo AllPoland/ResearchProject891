@@ -30,12 +30,13 @@ public class HudDocument : MonoBehaviour
 
     public static event Action<bool> OnDocumentUpdated;
 
-    private static event Action<TextAsset> OnDocumentOpened;
+    private static event Action<TextAsset, TextAsset> OnDocumentOpened;
 
     [Header("Components")]
     [SerializeField] private RectTransform documentTransform;
     [SerializeField] private GameObject closePrompt;
     [SerializeField] private TextMeshProUGUI textMesh;
+    [SerializeField] private TextMeshProUGUI entityTextMesh;
 
     [Header("Animation")]
     [SerializeField] private float animationTime = 1f;
@@ -52,9 +53,9 @@ public class HudDocument : MonoBehaviour
     private Coroutine animationCoroutine;
 
 
-    public static void OpenDocument(TextAsset documentText)
+    public static void OpenDocument(TextAsset documentText, TextAsset entityText)
     {
-        OnDocumentOpened?.Invoke(documentText);
+        OnDocumentOpened?.Invoke(documentText, entityText);
     }
 
 
@@ -120,11 +121,12 @@ public class HudDocument : MonoBehaviour
     }
 
 
-    public void ShowDocument(TextAsset documentText, bool animate = true)
+    public void ShowDocument(TextAsset documentText, TextAsset entityText, bool animate = true)
     {
         documentTransform.gameObject.SetActive(true);
         closePrompt.SetActive(true);
-        textMesh.text = documentText.text;
+        textMesh.text = documentText ? documentText.text : "";
+        entityTextMesh.text = entityText ? entityText.text : "";
 
         DocumentActive = true;
 
@@ -191,7 +193,7 @@ public class HudDocument : MonoBehaviour
             HideDocument(false);
         }
 
-        OnDocumentOpened += (TextAsset textAsset) => ShowDocument(textAsset);
+        OnDocumentOpened += (textAsset, entityText) => ShowDocument(textAsset, entityText);
     }
 
     
