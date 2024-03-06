@@ -4,6 +4,7 @@ using UnityEngine;
 public class ZapSequence : MonoBehaviour
 {
     [Header("Components")]
+    [SerializeField] private Light[] chargeLights;
     [SerializeField] private Light zapLight;
     [SerializeField] private LineRenderer[] lightningRenderers;
     [SerializeField] private AudioSource source;
@@ -12,6 +13,9 @@ public class ZapSequence : MonoBehaviour
     [Header("Configuration")]
     [SerializeField] private float chargeTime = 1f;
     [SerializeField] private float strobeTime = 1f;
+    [SerializeField] private float cooldownTime = 1f;
+
+    [Space]
     [SerializeField] private float strobeFreqency = 10f;
     [SerializeField] private float strobeFreqencyVariance = 1f;
 
@@ -67,7 +71,7 @@ public class ZapSequence : MonoBehaviour
         float parityDifference = brightnessDifference / 2;
 
         Color newColor = Color.white;
-        newColor.a = Random.Range(lightningBrightnessMinMax.y, lightningBrightnessMinMax.y + parityDifference);
+        newColor.a = Random.Range(lightningBrightnessMinMax.x, lightningBrightnessMinMax.x + parityDifference);
         if(parity)
         {
             newColor.a += parityDifference;
@@ -90,6 +94,25 @@ public class ZapSequence : MonoBehaviour
     }
 
 
+    private void SetChargeLightsActive(bool active)
+    {
+        foreach(Light light in chargeLights)
+        {
+            light.enabled = active;
+        }
+    }
+
+
+    private void SetChargeLightColorAndIntensity(Color color, float intensity)
+    {
+        foreach(Light light in chargeLights)
+        {
+            light.color = color;
+            light.intensity = intensity;
+        }
+    }
+
+
     private float GetRandomStrobeLength()
     {
         float variance = Random.Range(-strobeFreqencyVariance, strobeFreqencyVariance);
@@ -102,7 +125,7 @@ public class ZapSequence : MonoBehaviour
         float brightnessDifference = strobeBrightnessMinMax.y - strobeBrightnessMinMax.x;
         float parityDifference = brightnessDifference / 2;
 
-        float brightness = Random.Range(strobeBrightnessMinMax.y, strobeBrightnessMinMax.y + parityDifference);
+        float brightness = Random.Range(strobeBrightnessMinMax.x, strobeBrightnessMinMax.x + parityDifference);
         if(parity)
         {
             brightness += parityDifference;
@@ -116,18 +139,21 @@ public class ZapSequence : MonoBehaviour
     {
         animationActive = true;
 
-        zapLight.enabled = true;
-        zapLight.color = chargeStartColor;
-        zapLight.intensity = chargeStartBrightness;
+        SetChargeLightsActive(true);
+        SetChargeLightColorAndIntensity(chargeStartColor, chargeStartBrightness);
 
         SetLightningActive(false);
+
+        source.clip = clip;
+        source.Play();
 
         //Charge up
         float t = 0f;
         while(t < 1f)
         {
-            zapLight.color = Color.Lerp(chargeStartColor, chargeEndColor, t);
-            zapLight.intensity = Mathf.Lerp(chargeStartBrightness, chargeEndBrightness, Easings.Quad.Out(t));
+            Color color = Color.Lerp(chargeStartColor, chargeEndColor, t);
+            float intensity = Mathf.Lerp(chargeStartBrightness, chargeEndBrightness, Easings.Quad.In(t));
+            SetChargeLightColorAndIntensity(color, intensity);
 
             t += Time.deltaTime / chargeTime;
             yield return null;
@@ -137,6 +163,7 @@ public class ZapSequence : MonoBehaviour
         float strobeLength = GetRandomStrobeLength();
         bool strobeParity = false;
 
+        zapLight.enabled = true;
         zapLight.color = lightStrobeColor;
         zapLight.intensity = GetRandomStrobeBrightness(strobeParity);
 
@@ -167,6 +194,20 @@ public class ZapSequence : MonoBehaviour
         zapLight.enabled = false;
         SetLightningActive(false);
 
+        t = 0f;
+        while(t < 1f)
+        {
+            Color color = Color.Lerp(chargeEndColor, chargeStartColor, Easings.Quad.Out(t));
+            float intensity = Mathf.Lerp(chargeEndBrightness, chargeStartBrightness, t);
+            SetChargeLightColorAndIntensity(color, intensity);
+
+            t += Time.deltaTime / cooldownTime;
+            yield return null;
+        }
+
+        SetChargeLightsActive(false);
+        zapLight.enabled = false;
+
         animationActive = false;
     }
 
@@ -183,6 +224,7 @@ public class ZapSequence : MonoBehaviour
     private void OnEnable()
     {
         zapLight.enabled = false;
+        SetChargeLightsActive(false);
         SetLightningActive(false);
 
         StimulateFunction.OnStimulateFunctionTriggered += PlayZap;
