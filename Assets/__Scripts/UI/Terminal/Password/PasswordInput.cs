@@ -18,7 +18,8 @@ public class PasswordInput : MonoBehaviour
     public void InputPassword(string userInput)
     {
         //Send back whether the user got the password correct
-        bool correct = userInput.Equals(Password, StringComparison.InvariantCultureIgnoreCase);
+        string processedPassword = Password.Replace(" ", "");
+        bool correct = userInput.Equals(processedPassword, StringComparison.InvariantCultureIgnoreCase);
         incorrectText.SetText(correct ? "" : incorrectString);
 
         Callback(correct);

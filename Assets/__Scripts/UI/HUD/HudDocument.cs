@@ -30,7 +30,7 @@ public class HudDocument : MonoBehaviour
 
     public static event Action<bool> OnDocumentUpdated;
 
-    private static event Action<TextAsset, TextAsset> OnDocumentOpened;
+    private static event Action<TextAsset, TextAsset, bool> OnDocumentOpened;
 
     [Header("Components")]
     [SerializeField] private RectTransform documentTransform;
@@ -53,9 +53,9 @@ public class HudDocument : MonoBehaviour
     private Coroutine animationCoroutine;
 
 
-    public static void OpenDocument(TextAsset documentText, TextAsset entityText)
+    public static void OpenDocument(TextAsset documentText, TextAsset entityText, bool justify)
     {
-        OnDocumentOpened?.Invoke(documentText, entityText);
+        OnDocumentOpened?.Invoke(documentText, entityText, justify);
     }
 
 
@@ -121,12 +121,15 @@ public class HudDocument : MonoBehaviour
     }
 
 
-    public void ShowDocument(TextAsset documentText, TextAsset entityText, bool animate = true)
+    public void ShowDocument(TextAsset documentText, TextAsset entityText, bool justify, bool animate = true)
     {
         documentTransform.gameObject.SetActive(true);
         closePrompt.SetActive(true);
+
         textMesh.text = documentText ? documentText.text : "";
         entityTextMesh.text = entityText ? entityText.text : "";
+
+        textMesh.alignment = justify ? TextAlignmentOptions.TopJustified : TextAlignmentOptions.TopLeft;
 
         DocumentActive = true;
 
@@ -193,7 +196,7 @@ public class HudDocument : MonoBehaviour
             HideDocument(false);
         }
 
-        OnDocumentOpened += (textAsset, entityText) => ShowDocument(textAsset, entityText);
+        OnDocumentOpened += (textAsset, entityText, justify) => ShowDocument(textAsset, entityText, justify);
     }
 
     
