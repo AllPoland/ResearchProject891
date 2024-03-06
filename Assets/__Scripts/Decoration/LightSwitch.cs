@@ -25,7 +25,7 @@ public class LightSwitch : MonoBehaviour
         float t = 0f;
         while(t < 1f)
         {
-            float angle = Mathf.Lerp(startAngle, endAngle, Easings.Quad.In(t));
+            float angle = Mathf.Lerp(startAngle, endAngle, Easings.Quart.InOut(t));
             transform.localEulerAngles = new Vector3(0f, 0f, angle);
 
             t += Time.deltaTime / flipTime;
