@@ -15,6 +15,10 @@ public class StimulateDisc : MonoBehaviour
     [SerializeField] public int charge;
 
     [Space]
+    [SerializeField] private AudioClip startClip;
+    [SerializeField] private AudioClip endClip;
+
+    [Space]
     [SerializeField] private StimulateDisc upDisc;
     [SerializeField] private StimulateDisc downDisc;
     [SerializeField] private StimulateDisc leftDisc;
@@ -73,7 +77,11 @@ public class StimulateDisc : MonoBehaviour
     {
         //Plays a rotating animation to make it seem like the icons are rotating
         //Before running a callback that actually updates the icons
-        
+
+        //Play a sound at the start
+        TerminalAudio.PlayTerminalSound(TerminalSoundType.Notable, startClip);
+
+        //Bring all the icons as children
         UpdateIconPositions();
         foreach(StimulateChargeIcon chargeIcon in chargeIcons)
         {
@@ -178,6 +186,7 @@ public class StimulateDisc : MonoBehaviour
         UpdateIconPositions();
         if(updateGame)
         {
+            TerminalAudio.PlayTerminalSound(TerminalSoundType.Notable, endClip);
             OnRotate?.Invoke();
         }
     }

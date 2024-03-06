@@ -433,6 +433,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   charge: 1
+  startClip: {fileID: 8300000, guid: 98c1e2812ebb08a469ae2a3902ddf152, type: 3}
+  endClip: {fileID: 8300000, guid: cfc95e680f6141a408256863ab1e6996, type: 3}
   upDisc: {fileID: 0}
   downDisc: {fileID: 0}
   leftDisc: {fileID: 0}
