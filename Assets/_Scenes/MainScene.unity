@@ -8154,7 +8154,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6300750939967112689, guid: 7c6c8294ecf1a5546933baaf303a1dfd, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7634961476423121880, guid: 7c6c8294ecf1a5546933baaf303a1dfd, type: 3}
     m_AddedGameObjects:
@@ -8231,6 +8232,8 @@ MonoBehaviour:
     TargetStage: 15
   - StartStage: 25
     TargetStage: 30
+  - StartStage: 40
+    TargetStage: 45
   exitStages: []
 --- !u!114 &798348128
 MonoBehaviour:
