@@ -1,4 +1,4 @@
-Congratulations $<EMPLOYEE_NAME>! You have
+Congratulations ${EMPLOYEE_NAME}! You have
 been selected to participate in:
 
 > Research Project 891
@@ -12,8 +12,8 @@ interact with the subject in complete safety.
 
 All data from this experiment will be
 recorded through automated devices within the
-containment cell. No human measurements will
-be required.
+containment cell. No human measurements are
+required.
 
 Instructions will be regularly transmitted to
 the Facility Access Terminal, visible at the
@@ -21,7 +21,11 @@ bottom of the main page. Follow all
 instructions accurately and promptly.
 
 At the end of the research period, you will
-be discharged from S.O.U.P. Inc and
+be discharged from S.O.U.P. Incorporated and
 compensated in accordance with
-The New World Order Title 48b -
+New World Order Title 48b:
 "Deadly Workplace Accomodations Act".
+
+After discharge, a short survey will be
+available to voice concerns for the quality
+and/or safety of your research experience.

@@ -3566,7 +3566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6537658078017798200, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
       propertyPath: m_Name
-      value: InspireProcedures
+      value: InspirationProcedures
       objectReference: {fileID: 0}
     - target: {fileID: 9133247755265336458, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
       propertyPath: documentText
@@ -3574,7 +3574,7 @@ PrefabInstance:
       objectReference: {fileID: 4900000, guid: e651bb2548ea99d4796c5b9506330970, type: 3}
     - target: {fileID: 9133247755265336458, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
       propertyPath: documentTitle
-      value: Inspire Procedures
+      value: Inspiration Procedures
       objectReference: {fileID: 0}
     - target: {fileID: 9133247755265336458, guid: d03b6fbb0794bd4499431f1e037b1d1a, type: 3}
       propertyPath: documentViewer
@@ -9794,7 +9794,7 @@ PrefabInstance:
     - target: {fileID: 1939830219821478274, guid: 0e7cba32140519c4b81d80976bd6554a, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a982811c05f0e8c4b8104e2ef4751407, type: 3}
+      objectReference: {fileID: 21300000, guid: 4e6beda7ef2d8eb4c88d6a346ab9a7f9, type: 3}
     - target: {fileID: 1939830219821478274, guid: 0e7cba32140519c4b81d80976bd6554a, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -14392,7 +14392,7 @@ MonoBehaviour:
   chargeEndColor: {r: 0.60784316, g: 0.8392157, b: 0.8392157, a: 1}
   chargeEndBrightness: 5
   lightStrobeColor: {r: 1, g: 1, b: 1, a: 1}
-  strobeBrightnessMinMax: {x: 10, y: 25}
+  strobeBrightnessMinMax: {x: 10, y: 35}
   lightningBrightnessMinMax: {x: 0.1, y: 1}
   lightningXIncrementMinMax: {x: 0.9, y: 1.5}
   lightningYZMin: {x: -1.5, y: -1}
@@ -15195,12 +15195,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The "Stimulate" function has been enabled.
-
-    Perform the Stimulation
-    procedure as
-
-    described in the document.'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 71d98e2f55c12c04c9d2b43c9ff09797, type: 2}
   m_sharedMaterial: {fileID: 2135863857352367783, guid: 71d98e2f55c12c04c9d2b43c9ff09797, type: 2}
@@ -15361,11 +15356,18 @@ MonoBehaviour:
 
       Increased entity activity detected.
 
-      Continue
-      with the next testing procedure:
+      Open
+      document "Inspiration" to enable the
 
-      "Inspire"'
+      second experimental procedure.'
     ProgressionStage: 30
+  - Text: 'The "Inspire" function has been enabled.
+
+      Perform the Inspiration
+      procedure as
+
+      described in the document.'
+    ProgressionStage: 35
   messageClip: {fileID: 8300000, guid: 3b2b3fea49e8ace41bedd69af3287016, type: 3}
 --- !u!1 &1665569728
 GameObject:

@@ -16,16 +16,18 @@ and proportion.
 E-891A has no distinguishable appearance, and
 is rarely physically recorded by any means.
 
-E-891A is secured through displacement. The
-facility and surrounding area is to be kept
-clear of all possible threats and at-risk
-individuals.
+E-891A is to be secured through displacement.
+The facility containing E-891A and
+surrounding area is to be kept clear of all
+possible threats and at-risk individuals. An
+armed security platoon will be deployed at
+all hours for this purpose.
 
 As an Aberration class entity, E-891A is
-known to produce shifts in nearby
-individuals. Unlike most Aberration class
-entities, however, E-891A remains active
-primarily when in proximity of a lone target.
+known to cause aberrant behavior in nearby
+individuals. However, unlike most Aberration
+class entities, E-891A is active primarily
+when near a lone target.
 
 To facilitate a safe research environment,
 stay in view of a research partner at all
@@ -35,7 +37,7 @@ and the subject. Obstructions such as walls
 and windows are ineffective.
 
 Should E-891A become active, evacuate all
-researchers who are not yet affected. Do not
+employees who are not yet affected. Do not
 attempt to rescue affected individuals.
 Following an incident, allow at least 72
 hours before re-entering a one kilometer
