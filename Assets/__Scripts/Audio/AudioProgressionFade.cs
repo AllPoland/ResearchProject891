@@ -60,11 +60,11 @@ public class AudioProgressionFade : MonoBehaviour
 
     private void UpdateProgressionStage(int newStage)
     {
-        if(!source.isPlaying && enableRange.CheckInRange(newStage))
+        if((!source.isPlaying || fading) && enableRange.CheckInRange(newStage))
         {
             FadeVolume(0f, volume);
         }
-        else if(source.isPlaying)
+        else if(source.isPlaying || fading)
         {
             FadeVolume(volume, 0f);
         }
