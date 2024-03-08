@@ -10,6 +10,8 @@ public class AudioProgressionFade : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float volume = 1f;
     [SerializeField] private float fadeTime = 1f;
 
+    private bool audioActive;
+
     private bool fading;
     private Coroutine fadeCoroutine;
 
@@ -21,7 +23,10 @@ public class AudioProgressionFade : MonoBehaviour
         if(endVolume > 0.001f)
         {
             source.enabled = true;
-            source.Play();
+            if(!source.isPlaying)
+            {
+                source.Play();
+            }
         }
 
         float t = 0;
@@ -60,13 +65,16 @@ public class AudioProgressionFade : MonoBehaviour
 
     private void UpdateProgressionStage(int newStage)
     {
-        if((!source.isPlaying || fading) && enableRange.CheckInRange(newStage))
+        bool enable = enableRange.CheckInRange(newStage);
+        if(enable && !audioActive)
         {
             FadeVolume(0f, volume);
+            audioActive = true;
         }
-        else if(source.isPlaying || fading)
+        else if(!enable && audioActive)
         {
             FadeVolume(volume, 0f);
+            audioActive = false;
         }
     }
 
