@@ -14,14 +14,14 @@ public class SettingsVolumeUpdater : MonoBehaviour
         {
             globalVolumeHandler.SetVolume(SettingsManager.GetFloat("volume"));
         }
-        if(allSettings || setting == "sfxvolume")
-        {
-            sfxVolumeHandler.SetVolume(SettingsManager.GetFloat("sfxvolume"));
-        }
-        if(allSettings || setting == "ambientvolume")
-        {
-            ambientVolumeHandler.SetVolume(SettingsManager.GetFloat("ambientvolume"));
-        }
+        // if(allSettings || setting == "sfxvolume")
+        // {
+        //     sfxVolumeHandler.SetVolume(SettingsManager.GetFloat("sfxvolume"));
+        // }
+        // if(allSettings || setting == "ambientvolume")
+        // {
+        //     ambientVolumeHandler.SetVolume(SettingsManager.GetFloat("ambientvolume"));
+        // }
     }
 
 

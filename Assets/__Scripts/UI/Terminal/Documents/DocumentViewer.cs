@@ -30,8 +30,22 @@ public class DocumentViewer : MonoBehaviour
     }
 
 
-    public void OpenDocument(string documentName, TextAsset documentText, Action closeCallback)
+    public void OpenDocument(string documentName, TextAsset documentText, Action closeCallback, bool lockTerminal)
     {
+        if(lockTerminal)
+        {
+            //Clear the terminal history so the back button is disabled
+            while(TerminalScreen.Instance.windowHistory.Count > 1)
+            {
+                TerminalScreen.Instance.GoBack();
+            }
+
+            //Don't add this screen to the window history, just set it active
+            gameObject.SetActive(true);
+            SetDocument(documentName, documentText);
+            return;
+        }
+
         TerminalScreen.Instance.SetWindow(new DocumentWindow(this, documentName, documentText, closeCallback));
     }
 
@@ -69,7 +83,7 @@ public class DocumentViewer : MonoBehaviour
             Viewer.ClearDocument();
             Viewer.gameObject.SetActive(false);
 
-            Callback();
+            Callback?.Invoke();
         }
     }
 }

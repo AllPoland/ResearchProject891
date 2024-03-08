@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,9 @@ public class DocumentSelector : MonoBehaviour
     [SerializeField] private ProgressionRange influenceProgressionRange;
     [SerializeField] private int progressionStageOnOpen;
 
+    [SerializeField] private bool progressInstant = false;
+    [SerializeField] private bool lockTerminal = false;
+
     private bool passwordUnlocked = false;
 
 
@@ -45,8 +49,15 @@ public class DocumentSelector : MonoBehaviour
 
     private void OpenViewer()
     {
-        documentViewer.OpenDocument(documentTitle, documentText, SetProgression);
+        Action callback = progressInstant ? null : SetProgression;
+
+        documentViewer.OpenDocument(documentTitle, documentText, SetProgression, lockTerminal);
         UpdateSprite();
+
+        if(progressInstant)
+        {
+            SetProgression();
+        }
     }
 
 
