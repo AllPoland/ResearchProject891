@@ -384,6 +384,13 @@ public class PlayerController : MonoBehaviour
             }
 
             UpdateFootstep(moving);
+
+            if(!transform.position.y.Approximately(playerHeight))
+            {
+                //Keep the player level to the ground
+                float offset = playerHeight - transform.position.y;
+                characterController.Move(new Vector3(0f, offset, 0f));
+            }
         }
     }
 }

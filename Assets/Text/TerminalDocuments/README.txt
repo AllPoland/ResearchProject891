@@ -1,4 +1,4 @@
-> Executive Research Discussion Log #0049
+> Executive Research Discussion Log #0062
 > Date: September 20, 05
 
 ---------------------------------------------
@@ -12,7 +12,9 @@ Abernathy | What do you mean "I can't do it,"
 Collins   | I- it's not that I-
             They can't...
 
+
 > Pause for 1.38 seconds
+
 
 Abernathy | They can't WHAT. Spit it out. Are
             you going to keep wallowing in
@@ -28,11 +30,15 @@ Abernathy | No! I won't hear it, and you will
             going to let the lives you've
             already sacrificed be in vain?
 
+
 > Pause for 2.03 seconds
+
 
 Abernathy | ARE YOU!?
 
+
 > Pause for 9.71 seconds
+
 
 Abernathy | Transport comes in two days. If
             they haven't signed the release
@@ -68,3 +74,9 @@ Abernathy | I'm done. 24 hours.
             are you a coward?
 
             Your choice.
+
+
+> Pause for 5.60 seconds
+
+
+Collins   | I'm sorry.
