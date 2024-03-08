@@ -15,11 +15,8 @@ public class HudDocumentOpen : MonoBehaviour
 
     public void OpenDocument()
     {
-        if(documentText || entityText)
-        {
-            active = true;
-            HudDocument.OpenDocument(documentText, entityText, justify);
-        }
+        active = true;
+        HudDocument.OpenDocument(documentText, entityText, justify);
     }
 
 
