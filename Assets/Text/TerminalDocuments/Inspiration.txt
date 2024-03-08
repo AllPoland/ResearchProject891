@@ -25,10 +25,12 @@ successfully hit a note.
 
 In order for Inspiration to be successful,
 the majority of notes must be hit with the
-correct time and pitch. Progress is indicated
-by the bar just below the keyboard. The
-procedure can be repeated as many times as
-necessary until it is successful.
+correct time and pitch.
+
+Progress is indicated by the bar just below
+the keyboard. The procedure can be repeated
+as many times as necessary until it is
+successful.
 
 To quickly restart the procedure in case of
 a poor performance, click on the button

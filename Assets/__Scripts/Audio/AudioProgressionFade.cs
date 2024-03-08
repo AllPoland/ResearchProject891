@@ -8,7 +8,8 @@ public class AudioProgressionFade : MonoBehaviour
     [Space]
     [SerializeField] private AudioSource source;
     [SerializeField, Range(0f, 1f)] private float volume = 1f;
-    [SerializeField] private float fadeTime = 1f;
+    [SerializeField] private float fadeInTime = 1f;
+    [SerializeField] private float fadeOutTime = 1f;
 
     private bool audioActive;
 
@@ -16,7 +17,7 @@ public class AudioProgressionFade : MonoBehaviour
     private Coroutine fadeCoroutine;
 
 
-    private IEnumerator FadeVolumeCoroutine(float startVolume, float endVolume)
+    private IEnumerator FadeVolumeCoroutine(float startVolume, float endVolume, float fadeTime)
     {
         fading = true;
 
@@ -49,7 +50,7 @@ public class AudioProgressionFade : MonoBehaviour
     }
 
 
-    private void FadeVolume(float startVolume, float newVolume)
+    private void FadeVolume(float startVolume, float newVolume, float fadeTime)
     {
         if(fading)
         {
@@ -59,7 +60,7 @@ public class AudioProgressionFade : MonoBehaviour
             StopCoroutine(fadeCoroutine);
         }
 
-        fadeCoroutine = StartCoroutine(FadeVolumeCoroutine(startVolume, newVolume));
+        fadeCoroutine = StartCoroutine(FadeVolumeCoroutine(startVolume, newVolume, fadeTime));
     }
 
 
@@ -68,12 +69,12 @@ public class AudioProgressionFade : MonoBehaviour
         bool enable = enableRange.CheckInRange(newStage);
         if(enable && !audioActive)
         {
-            FadeVolume(0f, volume);
+            FadeVolume(0f, volume, fadeInTime);
             audioActive = true;
         }
         else if(!enable && audioActive)
         {
-            FadeVolume(volume, 0f);
+            FadeVolume(volume, 0f, fadeOutTime);
             audioActive = false;
         }
     }
