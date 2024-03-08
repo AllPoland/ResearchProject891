@@ -26,13 +26,13 @@ public class LightSwitch : MonoBehaviour
         while(t < 1f)
         {
             float angle = Mathf.Lerp(startAngle, endAngle, Easings.Quart.InOut(t));
-            transform.localEulerAngles = new Vector3(0f, 0f, angle);
+            transform.localEulerAngles = new Vector3(angle, 0f, 0f);
 
             t += Time.deltaTime / flipTime;
             yield return null;
         }
 
-        transform.localEulerAngles = new Vector3(0f, 0f, endAngle);
+        transform.localEulerAngles = new Vector3(endAngle, 0f, 0f);
         animating = false;
 
         OnFlipped?.Invoke(flipped);
@@ -52,7 +52,7 @@ public class LightSwitch : MonoBehaviour
             StopCoroutine(flipCoroutine);
         }
 
-        float startAngle = transform.localEulerAngles.z;
+        float startAngle = transform.localEulerAngles.x;
         float endAngle = flipped ? onAngle : offAngle;
         StartCoroutine(FlipSwitchCoroutine(startAngle, endAngle));
     }
@@ -72,7 +72,7 @@ public class LightSwitch : MonoBehaviour
         }
 
         flipped = flip;
-        transform.localEulerAngles = new Vector3(0f, 0f, flipped ? onAngle : offAngle);
+        transform.localEulerAngles = new Vector3(flipped ? onAngle : offAngle, 0f, 0f);
 
         OnFlipped?.Invoke(flipped);
     }
