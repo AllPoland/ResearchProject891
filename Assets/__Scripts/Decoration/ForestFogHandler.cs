@@ -78,6 +78,9 @@ public class ForestFogHandler : MonoBehaviour
 
     private void OnEnable()
     {
+        SetFogColorAndDensity(roomFogColor, roomFogDensity);
+        forestFogActive = false;
+
         TerminalScreen.OnTerminalToggled += UpdateTerminalActive;
     }
 
@@ -88,9 +91,6 @@ public class ForestFogHandler : MonoBehaviour
         {
             StopCoroutine(transitionCoroutine);
         }
-
-        SetFogColorAndDensity(roomFogColor, roomFogDensity);
-        forestFogActive = false;
 
         TerminalScreen.OnTerminalToggled -= UpdateTerminalActive;
     }
