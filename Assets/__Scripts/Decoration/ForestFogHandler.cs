@@ -92,6 +92,9 @@ public class ForestFogHandler : MonoBehaviour
             StopCoroutine(transitionCoroutine);
         }
 
+        SetFogColorAndDensity(roomFogColor, roomFogDensity);
+        forestFogActive = false;
+
         TerminalScreen.OnTerminalToggled -= UpdateTerminalActive;
     }
 }

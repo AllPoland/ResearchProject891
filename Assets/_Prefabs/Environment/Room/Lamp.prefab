@@ -127,7 +127,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5858241771642600776}
-  - component: {fileID: 3990021259759171579}
   m_Layer: 7
   m_Name: Lamp
   m_TagString: Untagged
@@ -155,23 +154,6 @@ Transform:
   - {fileID: 762568816856924840}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3990021259759171579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3402718436742938549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e64a87befd509945a8f978de510a45a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnableRanges:
-  - minProgression: 0
-    maxProgression: 50
-  - minProgression: 55
-    maxProgression: 60
 --- !u!1 &3854992969413291561
 GameObject:
   m_ObjectHideFlags: 0

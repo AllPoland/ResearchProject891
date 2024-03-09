@@ -73,6 +73,9 @@ public class ForestLightHandler : MonoBehaviour
             StopCoroutine(transitionCoroutine);
         }
 
+        forestLight.intensity = 0f;
+        forestLightOn = false;
+
         TerminalScreen.OnTerminalToggled -= UpdateTerminalActive;
     }
 }
