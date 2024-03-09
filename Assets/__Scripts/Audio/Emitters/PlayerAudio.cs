@@ -4,10 +4,17 @@ using UnityEngine;
 public class PlayerAudio : MonoBehaviour
 {
     [SerializeField] private RandomSound footstepSounds;
+    [SerializeField] private RandomSound forestFootstepSounds;
+
+    [Space]
     [SerializeField] private RandomSound shuffleSounds;
+    [SerializeField] private RandomSound forestShuffleSounds;
 
     [Space]
     [SerializeField] private float shuffleCooldownTime = 0.2f;
+
+    [Space]
+    [SerializeField] private ProgressionRange forestFootstepRange;
 
     private AudioSource source;
 
@@ -30,7 +37,10 @@ public class PlayerAudio : MonoBehaviour
 
     public void PlayFootstep()
     {
-        PlayClip(footstepSounds.GetClip());
+        bool useForestSound = forestFootstepRange.CheckInRange(ProgressionManager.ProgressionStage);
+        RandomSound sounds = useForestSound ? forestFootstepSounds : footstepSounds;
+
+        PlayClip(sounds.GetClip());
     }
 
 
@@ -38,7 +48,9 @@ public class PlayerAudio : MonoBehaviour
     {
         if(shuffleCooldown <= 0f)
         {
-            PlayClip(shuffleSounds.GetClip());
+            bool useForestSound = forestFootstepRange.CheckInRange(ProgressionManager.ProgressionStage);
+            RandomSound sounds = useForestSound ? forestShuffleSounds : shuffleSounds;
+            PlayClip(sounds.GetClip());
         }
         shuffleCooldown = shuffleCooldownTime;
     }
