@@ -54,11 +54,19 @@ public class PlayerInteract : MonoBehaviour
                 continue;
             }
 
-            Quaternion direction = Quaternion.LookRotation(positionDifference);
-            interactable.AngleDifference = Mathf.Abs(Quaternion.Angle(rotation, direction));
-            if(interactable.AngleDifference > interactable.MaxLookAngle)
+            Quaternion positionDirection = Quaternion.LookRotation(positionDifference);
+            float lookAngleDifference = Mathf.Abs(Quaternion.Angle(rotation, positionDirection));
+            if(lookAngleDifference > interactable.MaxLookAngle)
             {
                 //We're looking away from this interactable
+                inRangeInteractables.Remove(interactable);
+                continue;
+            }
+
+            float positionAngleDifference = Quaternion.Angle(interactable.transform.rotation, positionDirection);
+            if(positionAngleDifference > interactable.MaxPositionAngle)
+            {
+                //We're behind this interactable too much
                 inRangeInteractables.Remove(interactable);
                 continue;
             }

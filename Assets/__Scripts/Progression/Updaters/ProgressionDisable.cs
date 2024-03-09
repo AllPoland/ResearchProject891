@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ProgressionDisable : MonoBehaviour
 {
     [SerializeField] public List<ProgressionRange> EnableRanges;
+
+    [NonSerialized] public bool initialized = false;
 
 
     private void UpdateProgressionStage(int stage)
@@ -23,9 +26,20 @@ public class ProgressionDisable : MonoBehaviour
     }
 
 
-    private void Start()
+    public void Init()
     {
         ProgressionManager.OnProgressionStageUpdated += UpdateProgressionStage;
         UpdateProgressionStage(ProgressionManager.ProgressionStage);
+
+        initialized = true;
+    }
+
+
+    private void OnEnable()
+    {
+        if(!initialized)
+        {
+            Init();
+        }
     }
 }

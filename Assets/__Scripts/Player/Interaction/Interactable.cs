@@ -15,12 +15,12 @@ public class Interactable : MonoBehaviour
     [Space]
     [SerializeField] public float MaxDistance = 1f;
     [SerializeField] public float MaxLookAngle = 45f;
+    [SerializeField] public float MaxPositionAngle = 180f;
 
     [Space]
     [SerializeField] public UnityEvent OnInteract;
 
     [NonSerialized] public float DistanceFromPlayer;
-    [NonSerialized] public float AngleDifference;
 
 
     public void Interact()

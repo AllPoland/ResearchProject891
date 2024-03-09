@@ -104,7 +104,10 @@ public class ScrollingText : MonoBehaviour
             text = textMesh.text;
         }
 
-        scrollCoroutine = StartCoroutine(ScrollTextCoroutine());
+        if(enabled)
+        {
+            scrollCoroutine = StartCoroutine(ScrollTextCoroutine());
+        }
     }
 
 
