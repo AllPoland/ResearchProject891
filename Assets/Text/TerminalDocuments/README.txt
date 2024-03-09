@@ -10,13 +10,13 @@ Abernathy | What do you mean "I can't do it,"
             Do. Your. Job.
 
 Collins   | I- it's not that I-
-            They can't...
+            He can't...
 
 
 > Pause for 1.38 seconds
 
 
-Abernathy | They can't WHAT. Spit it out. Are
+Abernathy | He can't WHAT? Spit it out. Are
             you going to keep wallowing in
             your self-righteous bullshit, or
             are you going to be a hero?
@@ -41,9 +41,9 @@ Abernathy | ARE YOU!?
 
 
 Abernathy | Transport comes in two days. If
-            they haven't signed the release
-            by then, you're going in their
-            stead.
+            your brother hasn't signed the
+            release by then, you're going in
+            his stead.
 
 Collins   | You can't be serious!
 
@@ -51,10 +51,10 @@ Abernathy | I'm dead serious. We're at the
             finish line. Someone has to go.
             Someone with the aberrant
             connection, which now only
-            includes only you and them.
+            includes you and him.
 
 Collins   | So you'll throw this ultimatum
-            at me!? No - like - delays, or
+            at me now!? No like - delays, or
             time to consider other options?
 
 Abernathy | DELAYS!? You're going to sit
@@ -70,13 +70,11 @@ Collins   | Sorry your precious schedule
             y'know, murdered people?
 
 Abernathy | I'm done. 24 hours.
-            You or them. Will be a hero, or
-            are you a coward?
-
+            You or him.
             Your choice.
 
 
-> Pause for 5.60 seconds
+> Pause for 21.60 seconds
 
 
 Collins   | I'm sorry.
