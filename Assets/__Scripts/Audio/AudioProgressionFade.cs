@@ -10,6 +10,7 @@ public class AudioProgressionFade : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float volume = 1f;
     [SerializeField] private float fadeInTime = 1f;
     [SerializeField] private float fadeOutTime = 1f;
+    [SerializeField] private bool playOnEnable = true;
 
     private bool audioActive;
 
@@ -24,7 +25,7 @@ public class AudioProgressionFade : MonoBehaviour
         if(endVolume > 0.001f)
         {
             source.enabled = true;
-            if(!source.isPlaying)
+            if(!source.isPlaying && playOnEnable)
             {
                 source.Play();
             }
@@ -60,7 +61,30 @@ public class AudioProgressionFade : MonoBehaviour
             StopCoroutine(fadeCoroutine);
         }
 
-        fadeCoroutine = StartCoroutine(FadeVolumeCoroutine(startVolume, newVolume, fadeTime));
+        if(fadeTime <= 0f)
+        {
+            //Don't use a transition at all
+            source.volume = newVolume;
+            if(newVolume > 0.001f)
+            {
+                source.enabled = true;
+                if(!source.isPlaying && playOnEnable)
+                {
+                    source.Play();
+                }
+            }
+            else
+            {
+                source.Stop();
+                source.enabled = false;
+            }
+            return;
+        }
+
+        if(gameObject.activeInHierarchy)
+        {
+            fadeCoroutine = StartCoroutine(FadeVolumeCoroutine(startVolume, newVolume, fadeTime));
+        }
     }
 
 

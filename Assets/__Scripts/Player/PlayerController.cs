@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     //The simplest, most braindead player controller ever conceived !!!!!!
     //No vertical movement, no velocity, built-in character controller, perfect.
 
+    public static PlayerController Instance { get; private set; }
+
     //This is used to progress the game only when the player is staring at the terminal
     //Avoids things changing while they're still visible
     public static event Action OnTerminalTransitionFinished;
@@ -306,6 +308,17 @@ public class PlayerController : MonoBehaviour
 
         //Transition the camera in/out of the terminal view
         StartCameraTransition();
+    }
+
+
+    private void OnEnable()
+    {
+        if(Instance != null && Instance != this)
+        {
+            enabled = false;
+            return;
+        }
+        Instance = this;
     }
 
 
