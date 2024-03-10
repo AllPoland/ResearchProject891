@@ -56,6 +56,15 @@ public class PlayerAudio : MonoBehaviour
     }
 
 
+    public void PlaySoftShuffle()
+    {
+        if(shuffleCooldown <= 0f)
+        {
+            PlayClip(forestShuffleSounds.GetClip());
+        }
+    }
+
+
     private void Awake()
     {
         source = GetComponent<AudioSource>();
@@ -64,7 +73,7 @@ public class PlayerAudio : MonoBehaviour
 
     private void Start()
     {
-        TerminalScreen.OnTerminalToggled += (_) => PlayFootShuffle();
+        TerminalScreen.OnTerminalToggled += (_) => PlaySoftShuffle();
     }
 
 

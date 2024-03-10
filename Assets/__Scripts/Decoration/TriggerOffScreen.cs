@@ -2,7 +2,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class DisableOffScreen : MonoBehaviour
+public class TriggerOffScreen : MonoBehaviour
 {
     [SerializeField] private MeshRenderer[] contributors;
     [SerializeField] private bool startPrimed = false;
