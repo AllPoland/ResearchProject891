@@ -21,8 +21,6 @@ public class EndingCutscene : MonoBehaviour
     [SerializeField] private Renderer[] soupEyes;
     [SerializeField] private float eyeInDelay;
     [SerializeField] private float eyeInTime;
-    [SerializeField] private float eyeOutDelay;
-    [SerializeField] private float eyeOutTime;
 
     [Space]
     [SerializeField, ColorUsage(false, true)] private Color soupGlowEmission;
@@ -33,10 +31,16 @@ public class EndingCutscene : MonoBehaviour
     [SerializeField] private float letterSlideDelay;
     [SerializeField] private float letterSlideTime;
     [SerializeField] private Vector3 letterSlideStartPos;
-    [SerializeField] private Vector3 lettereSlideEndPos;
+    [SerializeField] private Vector3 letterSlideEndPos;
 
-    private bool cutsceneActive;
-    private Coroutine cutsceneCoroutine;
+    [Space]
+    [SerializeField] private TextAsset letterText;
+    [SerializeField] private float letterOpenDelay;
+
+    [Header("Final Fadeout")]
+    [SerializeField] private float cameraReturnTime;
+    [SerializeField] private float fadeOutDelay;
+    [SerializeField] private float fadeOutTime;
 
     private MaterialPropertyBlock soupEyeProperties;
 
@@ -51,38 +55,121 @@ public class EndingCutscene : MonoBehaviour
     }
 
 
+    private IEnumerator FadeOutCoroutine()
+    {
+        Transform cameraTransform = Camera.main.transform;
+        Quaternion startCameraRotation = cameraTransform.rotation;
+
+        float t = 0f;
+        while(t < 1f)
+        {
+            float ease = Easings.Sine.Out(t);
+            cameraTransform.rotation = Quaternion.Slerp(startCameraRotation, Quaternion.identity, ease);
+
+            t += Time.deltaTime / cameraReturnTime;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(fadeOutDelay);
+
+        t = 0f;
+        while(t < 1f)
+        {
+            soupTransform.position = Vector3.Lerp(soupEndPos, soupStartPos, t);
+
+            t += Time.deltaTime / fadeOutTime;
+            yield return null;
+        }
+
+        soupTransform.gameObject.SetActive(false);
+    }
+
+
+    private void StartFinalFadeOut(bool documentActive)
+    {
+        if(documentActive)
+        {
+            //Uhhhhhhhhhhhhhhhhhhhhhhhhh
+            Debug.LogWarning("Uhhhhhhhhhhhhhhhhhhhhh");
+            return;
+        }
+
+        HudDocument.OnDocumentUpdated -= StartFinalFadeOut;
+        StartCoroutine(FadeOutCoroutine());
+    }
+
+
     private IEnumerator CutsceneCoroutine()
     {
-        cutsceneActive = true;
-
         RenderSettings.fogDensity = fogDensity;
 
-        soupTransform.gameObject.SetActive(true);
+        letterTransform.gameObject.SetActive(false);
 
+        soupTransform.gameObject.SetActive(true);
+        soupTransform.position = soupStartPos;
 
         soupEyeProperties = new MaterialPropertyBlock();
         SetEyeEmission(soupOffEmission);
 
-        yield return null;
+        yield return new WaitForSeconds(eyeInDelay);
 
-        cutsceneActive = false;
-    }
-
-
-    private void StopCutscene()
-    {
-        //This shouldn't happen but I'm paranoid about my game breaking the wrong way
-        if(cutsceneActive)
+        //Start fading the eyes in
+        float t = 0f;
+        while(t < 1f)
         {
-            StopCoroutine(cutsceneCoroutine);
+            SetEyeEmission(Color.Lerp(soupOffEmission, soupGlowEmission, Easings.Quad.In(t)));
+
+            t += Time.deltaTime / eyeInTime;
+            yield return null;
         }
+
+        SetEyeEmission(soupGlowEmission);
+
+        yield return new WaitForSeconds(soupMoveDelay);
+
+        //Start moving the soup in
+        t = 0f;
+        while(t < 1f)
+        {
+            soupTransform.position = Vector3.Lerp(soupStartPos, soupEndPos, t);
+            SetEyeEmission(Color.Lerp(soupGlowEmission, soupOffEmission, t));
+
+            t += Time.deltaTime / soupMoveTime;
+            yield return null;
+        }
+
+        soupTransform.position = soupEndPos;
+        SetEyeEmission(soupOffEmission);
+
+        yield return new WaitForSeconds(letterSlideDelay);
+
+        letterTransform.gameObject.SetActive(true);
+        letterTransform.position = letterSlideStartPos;
+
+        t = 0f;
+        while(t < 1f)
+        {
+            float ease = Easings.Cubic.Out(t);
+            letterTransform.position = Vector3.Lerp(letterSlideStartPos, letterSlideEndPos, ease);
+
+            Camera.main.transform.LookAt(letterTransform);
+
+            t += Time.deltaTime / letterSlideTime;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(letterOpenDelay);
+
+        letterTransform.gameObject.SetActive(false);
+
+        //Show the player the letter
+        HudDocument.OpenDocument(letterText, null, true);
+        HudDocument.OnDocumentUpdated += StartFinalFadeOut;
     }
 
 
     private void PlayCutscene()
     {
-        StopCutscene();
-
         //Steal the camera and take away player control
         Camera mainCamera = Camera.main;
         Transform cameraTransform = mainCamera.transform;
@@ -92,6 +179,8 @@ public class EndingCutscene : MonoBehaviour
         cameraTransform.rotation = Quaternion.identity;
 
         PlayerController.Instance.gameObject.SetActive(false);
+
+        StartCoroutine(CutsceneCoroutine());
     }
 
 
@@ -106,6 +195,9 @@ public class EndingCutscene : MonoBehaviour
 
     private void OnEnable()
     {
+        soupTransform.gameObject.SetActive(false);
+        letterTransform.gameObject.SetActive(false);
+
         ProgressionManager.OnProgressionStageUpdated += UpdateProgressionStage;
         UpdateProgressionStage(ProgressionManager.ProgressionStage);
     }
@@ -113,7 +205,6 @@ public class EndingCutscene : MonoBehaviour
 
     private void OnDisable()
     {
-        StopCutscene();
         ProgressionManager.OnProgressionStageUpdated -= UpdateProgressionStage;
     }
 }
