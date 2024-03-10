@@ -1,4 +1,4 @@
-> Executive Research Discussion Log #0062
+> Executive Research Discussion Log
 > Date: September 20, 05
 
 ---------------------------------------------

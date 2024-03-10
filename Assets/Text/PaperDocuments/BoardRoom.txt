@@ -1,4 +1,4 @@
-Executive Research Discussion Log #0046
+Executive Research Discussion Log
 Page 6/23
 Date: August 12, 05
 
@@ -15,21 +15,21 @@ Guana     | I know it doesn't seem exactly moral
             research will save way more lives
             than it costs.
 
-Collins   | Oh, so let's just send <i>you</i> down! If
+Collins   | Oh, so then let's send <i>you</i> down! If
             this is <i>so</i> important, surely you're
-            willing to conduct the research
-            yourself.
+            willing to do the research yourself.
 
-Guana     | I would, but unfortunately I'm the
-            only one who can-
+Guana     | I would, but unfortunately I don't
+            have the aberr-
 
-Abernathy | Don't start... Dr. Guana is making
-            good progress, and our shareholders
-            are eager to see results.
+Abernathy | Don't start.
+            We're already behind schedule, and
+            the shareholders are eager to see
+            results.
 
-Collins   | OH! Of course, it's all about the
+Collins   | OH! Of course it's all about the
             money! Yeah, <i>shareholders</i> want us to
-            force innocent people to go poke a
+            send innocent people to go poke a
             Bored God with a stick. Fuck that.
 
 Abernathy | Language.

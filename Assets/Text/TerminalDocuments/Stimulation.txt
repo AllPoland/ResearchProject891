@@ -15,10 +15,10 @@ intervention is required. Click on the
 "Stimulation" function in the terminal's main
 screen to begin.
 
-To generate sufficient enough power for a
-shock, the capacitors need to be aligned by a
-researcher. Capacitors come in 3 forms:
-positive, negative, or neutral.
+To generate sufficient power for a shock, all
+capacitors must be aligned by a researcher.
+Capacitors come in 3 forms: positive, negative,
+or neutral.
 
 On the Stimulation screen, there are 4 static
 pylons, each surrounded by 4 capacitors.
