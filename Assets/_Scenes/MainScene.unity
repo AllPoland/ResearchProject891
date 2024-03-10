@@ -3613,6 +3613,7 @@ GameObject:
   m_Component:
   - component: {fileID: 290796170}
   - component: {fileID: 290796171}
+  - component: {fileID: 290796172}
   m_Layer: 3
   m_Name: AmbientHum
   m_TagString: Untagged
@@ -3731,6 +3732,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &290796172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290796169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9361efcec3902594c9f2016c00e199c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableRange:
+    minProgression: 55
+    maxProgression: 65
+  source: {fileID: 290796171}
+  volume: 1
+  fadeInTime: 0
+  fadeOutTime: 3
+  playOnEnable: 0
 --- !u!1001 &298764942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12570,29 +12591,34 @@ MonoBehaviour:
     minProgression: 60
     maxProgression: 65
   fogDensity: 0.075
-  mainSource: {fileID: 138931201}
-  introClip: {fileID: 0}
+  spotLight: {fileID: 1382891719}
+  audioSource: {fileID: 138931201}
+  introClip: {fileID: 8300000, guid: 9ac457474c9096b42929e2de55a4c37e, type: 3}
+  paperSlideClip: {fileID: 8300000, guid: 9278931d37c486245829f22d207191f3, type: 3}
+  paperPickupClip: {fileID: 8300000, guid: 7af49267ee71d894db9f6e4762938036, type: 3}
+  paperDropClip: {fileID: 8300000, guid: 504729e39a549df4e82ad199ce142f1e, type: 3}
   soupTransform: {fileID: 2133096702}
-  soupMoveDelay: 1.5
-  soupMoveTime: 3
-  soupStartPos: {x: 0, y: 0, z: 4}
-  soupEndPos: {x: 0, y: 0, z: 2}
+  soupMoveDelay: 2
+  soupMoveTime: 10
+  soupStartPos: {x: 0, y: 0, z: 4.5}
+  soupEndPos: {x: 0, y: 0, z: 1.8}
   soupEyes:
   - {fileID: 354895090}
-  eyeInDelay: 0.5
-  eyeInTime: 0.5
+  eyeInDelay: 3.5
+  eyeInTime: 2
   soupGlowEmission: {r: 0.9716981, g: 0, b: 0, a: 0}
   soupOffEmission: {r: 0, g: 0, b: 0, a: 0}
   letterTransform: {fileID: 1062212476}
-  letterSlideDelay: 1.5
-  letterSlideTime: 0.5
-  letterSlideStartPos: {x: 0, y: 0, z: 2}
-  letterSlideEndPos: {x: 0, y: -0.5, z: 0.25}
+  letterSlideDelay: 6
+  letterSlideTime: 0.85
+  letterSlideStartPos: {x: 0, y: 0, z: 1.8}
+  letterSlideEndPos: {x: 0, y: -0.5, z: 0.15}
   letterText: {fileID: 4900000, guid: 3d03af7c488e89d44a49274d65128220, type: 3}
-  letterOpenDelay: 1.5
-  cameraReturnTime: 1
-  fadeOutDelay: 1
-  fadeOutTime: 4
+  letterOpenDelay: 2
+  cameraReturnTime: 1.5
+  fadeOutDelay: 1.5
+  fadeOutTime: 10
+  progressionOnEnd: 65
 --- !u!1 &846684043
 GameObject:
   m_ObjectHideFlags: 0
@@ -14676,7 +14702,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1132195491050316755, guid: db87eb3b5b499b64b8caf7cdae8ea232, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4122509760682443164, guid: db87eb3b5b499b64b8caf7cdae8ea232, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14844,7 +14870,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5858241771642600776, guid: d0ab560afee1bc94aa3bf6218360be66, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2
+      value: -2.25
       objectReference: {fileID: 0}
     - target: {fileID: 5858241771642600776, guid: d0ab560afee1bc94aa3bf6218360be66, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17341,10 +17367,10 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.6132076, g: 0.59637505, b: 0.44255075, a: 1}
-  m_Intensity: 2
+  m_Color: {r: 0.9622642, g: 0.9058113, b: 0.64907444, a: 1}
+  m_Intensity: 3
   m_Range: 10
-  m_SpotAngle: 130
+  m_SpotAngle: 120
   m_InnerSpotAngle: 70
   m_CookieSize: 10
   m_Shadows:
@@ -20387,7 +20413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnableRanges:
   - minProgression: 55
-    maxProgression: 999
+    maxProgression: 9999
 --- !u!1 &1616010833
 GameObject:
   m_ObjectHideFlags: 0

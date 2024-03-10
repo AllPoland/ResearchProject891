@@ -5,10 +5,16 @@ public class EndingCutscene : MonoBehaviour
 {
     [SerializeField] private ProgressionRange activeRange;
     [SerializeField] private float fogDensity;
+    [SerializeField] private Light spotLight;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
 
     [Space]
-    [SerializeField] private AudioSource mainSource;
     [SerializeField] private AudioClip introClip;
+    [SerializeField] private AudioClip paperSlideClip;
+    [SerializeField] private AudioClip paperPickupClip;
+    [SerializeField] private AudioClip paperDropClip;
 
     [Header("Soup")]
     [SerializeField] private Transform soupTransform;
@@ -41,6 +47,9 @@ public class EndingCutscene : MonoBehaviour
     [SerializeField] private float cameraReturnTime;
     [SerializeField] private float fadeOutDelay;
     [SerializeField] private float fadeOutTime;
+
+    [Space]
+    [SerializeField] private int progressionOnEnd;
 
     private MaterialPropertyBlock soupEyeProperties;
 
@@ -75,13 +84,14 @@ public class EndingCutscene : MonoBehaviour
         t = 0f;
         while(t < 1f)
         {
-            soupTransform.position = Vector3.Lerp(soupEndPos, soupStartPos, t);
+            soupTransform.position = Vector3.Lerp(soupEndPos, soupStartPos, Easings.Quad.In(t));
 
             t += Time.deltaTime / fadeOutTime;
             yield return null;
         }
 
         soupTransform.gameObject.SetActive(false);
+        ProgressionManager.ProgressionStage = progressionOnEnd;
     }
 
 
@@ -94,6 +104,8 @@ public class EndingCutscene : MonoBehaviour
             return;
         }
 
+        audioSource.PlayOneShot(paperDropClip);
+
         HudDocument.OnDocumentUpdated -= StartFinalFadeOut;
         StartCoroutine(FadeOutCoroutine());
     }
@@ -101,7 +113,10 @@ public class EndingCutscene : MonoBehaviour
 
     private IEnumerator CutsceneCoroutine()
     {
+        Transform cameraTransform = Camera.main.transform;
+
         RenderSettings.fogDensity = fogDensity;
+        spotLight.gameObject.SetActive(true);
 
         letterTransform.gameObject.SetActive(false);
 
@@ -110,6 +125,8 @@ public class EndingCutscene : MonoBehaviour
 
         soupEyeProperties = new MaterialPropertyBlock();
         SetEyeEmission(soupOffEmission);
+        
+        audioSource.PlayOneShot(introClip);
 
         yield return new WaitForSeconds(eyeInDelay);
 
@@ -117,7 +134,7 @@ public class EndingCutscene : MonoBehaviour
         float t = 0f;
         while(t < 1f)
         {
-            SetEyeEmission(Color.Lerp(soupOffEmission, soupGlowEmission, Easings.Quad.In(t)));
+            SetEyeEmission(Color.Lerp(soupOffEmission, soupGlowEmission, Easings.Quad.InOut(t)));
 
             t += Time.deltaTime / eyeInTime;
             yield return null;
@@ -131,8 +148,9 @@ public class EndingCutscene : MonoBehaviour
         t = 0f;
         while(t < 1f)
         {
-            soupTransform.position = Vector3.Lerp(soupStartPos, soupEndPos, t);
-            SetEyeEmission(Color.Lerp(soupGlowEmission, soupOffEmission, t));
+            float ease = Easings.Quad.InOut(t);
+            soupTransform.position = Vector3.Lerp(soupStartPos, soupEndPos, ease);
+            SetEyeEmission(Color.Lerp(soupGlowEmission, soupOffEmission, ease));
 
             t += Time.deltaTime / soupMoveTime;
             yield return null;
@@ -146,13 +164,18 @@ public class EndingCutscene : MonoBehaviour
         letterTransform.gameObject.SetActive(true);
         letterTransform.position = letterSlideStartPos;
 
+        audioSource.PlayOneShot(paperSlideClip);
+
         t = 0f;
         while(t < 1f)
         {
-            float ease = Easings.Cubic.Out(t);
+            float ease = Easings.Sine.InOut(t);
             letterTransform.position = Vector3.Lerp(letterSlideStartPos, letterSlideEndPos, ease);
 
-            Camera.main.transform.LookAt(letterTransform);
+            Vector3 lookDirection = letterTransform.position - cameraTransform.position;
+            Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
+
+            cameraTransform.rotation = Quaternion.Lerp(cameraTransform.rotation, lookRotation, 0.5f);
 
             t += Time.deltaTime / letterSlideTime;
             yield return null;
@@ -161,6 +184,8 @@ public class EndingCutscene : MonoBehaviour
         yield return new WaitForSeconds(letterOpenDelay);
 
         letterTransform.gameObject.SetActive(false);
+
+        audioSource.PlayOneShot(paperPickupClip);
 
         //Show the player the letter
         HudDocument.OpenDocument(letterText, null, true);
@@ -195,6 +220,7 @@ public class EndingCutscene : MonoBehaviour
 
     private void OnEnable()
     {
+        spotLight.gameObject.SetActive(false);
         soupTransform.gameObject.SetActive(false);
         letterTransform.gameObject.SetActive(false);
 
