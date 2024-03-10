@@ -322,6 +322,12 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    private void OnDisable()
+    {
+        TerminalScreen.OnTerminalToggled -= UpdateTerminalActive;
+    }
+
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
