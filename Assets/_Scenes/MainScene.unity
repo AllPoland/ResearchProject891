@@ -12761,7 +12761,7 @@ MonoBehaviour:
   letterSlideTime: 0.85
   letterSlideStartPos: {x: 0, y: -0.4, z: 2.2}
   letterSlideEndPos: {x: 0, y: -0.5, z: 0.2}
-  letterText: {fileID: 4900000, guid: 3d03af7c488e89d44a49274d65128220, type: 3}
+  letterText: {fileID: 4900000, guid: ef8b5d7cdb440a44db1435bf2733afa1, type: 3}
   letterOpenDelay: 2
   letterCameraDamp: 0.25
   cameraReturnTime: 1.5
@@ -14051,7 +14051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1000320708
 Transform:
   m_ObjectHideFlags: 0
@@ -21703,7 +21703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1645437084
 Transform:
   m_ObjectHideFlags: 0
