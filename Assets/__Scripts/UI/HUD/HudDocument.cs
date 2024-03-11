@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HudDocument : MonoBehaviour
 {
@@ -30,13 +31,22 @@ public class HudDocument : MonoBehaviour
 
     public static event Action<bool> OnDocumentUpdated;
 
-    private static event Action<TextAsset, TextAsset, bool> OnDocumentOpened;
+    private static event Action<TextAsset, TextAsset, bool, bool> OnDocumentOpened;
 
     [Header("Components")]
     [SerializeField] private RectTransform documentTransform;
+    [SerializeField] private Image documentBackground;
     [SerializeField] private GameObject closePrompt;
     [SerializeField] private TextMeshProUGUI textMesh;
     [SerializeField] private TextMeshProUGUI entityTextMesh;
+
+    [Header("Visuals")]
+    [SerializeField] private Sprite defaultSprite;
+    [SerializeField] private Sprite letterSprite;
+
+    [Space]
+    [SerializeField] private TMP_FontAsset defaultFont;
+    [SerializeField] private TMP_FontAsset letterFont;
 
     [Header("Animation")]
     [SerializeField] private float animationTime = 1f;
@@ -53,9 +63,9 @@ public class HudDocument : MonoBehaviour
     private Coroutine animationCoroutine;
 
 
-    public static void OpenDocument(TextAsset documentText, TextAsset entityText, bool justify)
+    public static void OpenDocument(TextAsset documentText, TextAsset entityText, bool justify, bool isLetter)
     {
-        OnDocumentOpened?.Invoke(documentText, entityText, justify);
+        OnDocumentOpened?.Invoke(documentText, entityText, justify, isLetter);
     }
 
 
@@ -121,10 +131,21 @@ public class HudDocument : MonoBehaviour
     }
 
 
-    public void ShowDocument(TextAsset documentText, TextAsset entityText, bool justify, bool animate = true)
+    public void ShowDocument(TextAsset documentText, TextAsset entityText, bool justify, bool animate = true, bool isLetter = false)
     {
         documentTransform.gameObject.SetActive(true);
         closePrompt.SetActive(true);
+
+        if(isLetter)
+        {
+            documentBackground.sprite = letterSprite;
+            textMesh.font = letterFont;
+        }
+        else
+        {
+            documentBackground.sprite = defaultSprite;
+            textMesh.font = defaultFont;
+        }
 
         textMesh.text = documentText ? documentText.text : "";
         entityTextMesh.text = entityText ? entityText.text : "";
@@ -196,7 +217,7 @@ public class HudDocument : MonoBehaviour
             HideDocument(false);
         }
 
-        OnDocumentOpened += (textAsset, entityText, justify) => ShowDocument(textAsset, entityText, justify);
+        OnDocumentOpened += (textAsset, entityText, justify, isLetter) => ShowDocument(textAsset, entityText, justify, true, isLetter);
     }
 
     

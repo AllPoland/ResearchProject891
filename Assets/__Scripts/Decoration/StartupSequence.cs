@@ -17,7 +17,7 @@ public class StartupSequence : MonoBehaviour
     [SerializeField] private AudioSource backgroundSource;
 
     [Header("Configuration")]
-    [SerializeField] private AudioClip clip;
+    [SerializeField] private AudioClip startClip;
 
     [Space]
     [SerializeField] private float startDelay = 1f;
@@ -32,7 +32,7 @@ public class StartupSequence : MonoBehaviour
 
     private IEnumerator StartupCoroutine()
     {
-        source.clip = clip;
+        source.clip = startClip;
         source.Play();
 
         yield return new WaitForSeconds(startDelay);
@@ -59,6 +59,8 @@ public class StartupSequence : MonoBehaviour
         soupLogo.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(endDelay);
+
+        TerminalAudio.PlayTerminalSound(TerminalSoundType.Text);
 
         //Start the actual terminal stuff
         gameObject.SetActive(false);

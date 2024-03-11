@@ -8109,9 +8109,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   documentTransform: {fileID: 1402294380}
+  documentBackground: {fileID: 19423422}
   closePrompt: {fileID: 1394706848}
   textMesh: {fileID: 361334282}
   entityTextMesh: {fileID: 1278006113}
+  defaultSprite: {fileID: 21300000, guid: 6a7d99395e3f8e640aacf340984fecca, type: 3}
+  letterSprite: {fileID: 21300000, guid: 3d9bce403b9200d46b3cf17e17e66d20, type: 3}
+  defaultFont: {fileID: 11400000, guid: 71d98e2f55c12c04c9d2b43c9ff09797, type: 2}
+  letterFont: {fileID: 11400000, guid: 01b9a8511b0f7964d97f1fd8d174cd54, type: 2}
   animationTime: 0.3
   hiddenPosition: {x: -60, y: -1000}
   maxHiddenRotation: 40
@@ -16170,9 +16175,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1062212476}
     m_Modifications:
+    - target: {fileID: 2248189943271654610, guid: cfc9adb60572a764da7f9edb3ea09463, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cc17b4adb5bc3dd4fb5238eeef890a11, type: 2}
     - target: {fileID: 3482904027103652681, guid: cfc9adb60572a764da7f9edb3ea09463, type: 3}
       propertyPath: m_Name
       value: Paper
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605929876869421880, guid: cfc9adb60572a764da7f9edb3ea09463, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1485
       objectReference: {fileID: 0}
     - target: {fileID: 4605929876869421880, guid: cfc9adb60572a764da7f9edb3ea09463, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17142,7 +17155,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279308785
+    rgba: 4279506148
   m_fontColor: {r: 0.89411765, g: 0.078431375, b: 0.078431375, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -25207,7 +25220,7 @@ MonoBehaviour:
   welcomeText: {fileID: 146319671}
   soupLogo: {fileID: 1754589096}
   backgroundSource: {fileID: 982848071}
-  clip: {fileID: 8300000, guid: 639b685acf2ee2045b9b6207a2547efb, type: 3}
+  startClip: {fileID: 8300000, guid: 639b685acf2ee2045b9b6207a2547efb, type: 3}
   startDelay: 1.8
   welcomeTextDelay: 0.75
   welcomeTextTime: 3.25
