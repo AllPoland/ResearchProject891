@@ -4,24 +4,24 @@ INSPIRE FUNCTION ENABLED
 
 ---------------------------------------------
 
-Inspiration is a new technique that is
+Inspiration is a new procedure that is
 applied after an Aberration class entity has
-become active. The effects of this procedure
-are still unknown, but will theoretically
-produce positive results.
+become active. Its effects are still unknown,
+but it theoretically yields positive results.
 
 To inspire the entity, a short sequence of
 tones will be played by the researcher and
-transmitted into the observation room. Click
-the "Inspire" function on the terminal's main
-screen, where you will find a virtual
-keyboard.
+transmitted into the observation room.
+
+Click the "Inspire" function on the
+terminal's main screen, where you will find a
+virtual keyboard.
 
 Click on the button labelled "Begin". A
 series of note indicators will fall from the
 top of the screen. Click on the matching key
 just as the indicator reaches the bottom to
-successfully hit a note.
+hit a note.
 
 In order for Inspiration to be successful,
 the majority of notes must be hit with the
@@ -31,7 +31,3 @@ Progress is indicated by the bar just below
 the keyboard. The procedure can be repeated
 as many times as necessary until it is
 successful.
-
-To quickly restart the procedure in case of
-a poor performance, click on the button
-labelled "Restart".

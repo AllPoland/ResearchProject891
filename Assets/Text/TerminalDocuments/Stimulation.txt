@@ -6,11 +6,9 @@ STIMULATION FUNCTION ENABLED
 
 To encourage activity from the entity, a
 moderate electrostatic shock will be
-administered. This procedure has proven to
-improve data quality and quantity when
-researching Aberration class entities.
+administered.
 
-Like all standard research procedures, human
+Like all standard procedures, human
 intervention is required. Click on the
 "Stimulation" function in the terminal's main
 screen to begin.
