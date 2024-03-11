@@ -28,6 +28,8 @@ public class TerminalScreen : MonoBehaviour
     public static event Action<bool> OnTerminalToggled;
     public static event Action OnWindowUpdated;
 
+    [SerializeField] private StartupSequence startup;
+
     [Header("UI Tabs")]
     [SerializeField] private RectTransform startMenu;
     [SerializeField] private RectTransform optionsMenu;
@@ -125,7 +127,12 @@ public class TerminalScreen : MonoBehaviour
         MainWindow = new NoDeleteTerminalWindow(mainMenu);
 
         TerminalActive = true;
-        SetWindow(StartWindow);
+
+        if(startup)
+        {
+            startup.PlayStartup();
+        }
+        else SetWindow(StartWindow);
     }
 
 
