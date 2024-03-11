@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -26,6 +27,8 @@ public class StartupSequence : MonoBehaviour
     [SerializeField] private float soupLogoTime = 1f;
     [SerializeField] private float endDelay = 1f;
 
+    [NonSerialized] public bool starting = false;
+
 
     private IEnumerator StartupCoroutine()
     {
@@ -37,6 +40,7 @@ public class StartupSequence : MonoBehaviour
         backgroundSource.Play();
         screenLight.enabled = true;
         background.enabled = true;
+        starting = false;
 
         yield return new WaitForSeconds(welcomeTextDelay);
 
@@ -64,6 +68,8 @@ public class StartupSequence : MonoBehaviour
 
     public void PlayStartup()
     {
+        starting = true;
+
         gameObject.SetActive(true);
         screenLight.enabled = false;
         background.enabled = false;
