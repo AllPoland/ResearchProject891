@@ -2380,6 +2380,11 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!23 &127747907 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3477272508561867697, guid: edfebd8f3c24e714c96e9ea37ff79e4a, type: 3}
+  m_PrefabInstance: {fileID: 1354732965}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &129323320
 GameObject:
   m_ObjectHideFlags: 0
@@ -24708,6 +24713,9 @@ MonoBehaviour:
   lightningRenderers:
   - {fileID: 1327201105}
   - {fileID: 1880560268}
+  emitterRenderers:
+  - {fileID: 1673234717}
+  - {fileID: 127747907}
   source: {fileID: 1616010836}
   clip: {fileID: 8300000, guid: 064cd890e71b43b46a65635fcc726106, type: 3}
   chargeTime: 4.674
@@ -24719,6 +24727,7 @@ MonoBehaviour:
   chargeStartBrightness: 0
   chargeEndColor: {r: 0.60784316, g: 0.8392157, b: 0.8392157, a: 1}
   chargeEndBrightness: 5
+  emitterEmissionMult: 0.2
   lightStrobeColor: {r: 1, g: 1, b: 1, a: 1}
   strobeBrightnessMinMax: {x: 10, y: 35}
   lightningBrightnessMinMax: {x: 0.1, y: 1}
@@ -26182,6 +26191,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!23 &1673234717 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3477272508561867697, guid: edfebd8f3c24e714c96e9ea37ff79e4a, type: 3}
+  m_PrefabInstance: {fileID: 7649960300243384111}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1687128756
 PrefabInstance:
   m_ObjectHideFlags: 0

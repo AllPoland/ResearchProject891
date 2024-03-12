@@ -7,6 +7,7 @@ public class ZapSequence : MonoBehaviour
     [SerializeField] private Light[] chargeLights;
     [SerializeField] private Light zapLight;
     [SerializeField] private LineRenderer[] lightningRenderers;
+    [SerializeField] private Renderer[] emitterRenderers;
     [SerializeField] private AudioSource source;
     [SerializeField] private AudioClip clip;
 
@@ -26,6 +27,7 @@ public class ZapSequence : MonoBehaviour
     [Space]
     [SerializeField] private Color chargeEndColor = Color.white;
     [SerializeField] private float chargeEndBrightness = 1f;
+    [SerializeField] private float emitterEmissionMult = 1f;
 
     [Space]
     [SerializeField] private Color lightStrobeColor = Color.white;
@@ -43,6 +45,8 @@ public class ZapSequence : MonoBehaviour
     [SerializeField] private int progressionOnCompleteOutsideTerminal;
 
     private bool animationActive;
+
+    private MaterialPropertyBlock emitterProperties;
 
 
     private void RandomizeLightning()
@@ -114,6 +118,17 @@ public class ZapSequence : MonoBehaviour
         {
             light.color = color;
             light.intensity = intensity;
+        }
+
+        if(emitterProperties == null)
+        {
+            emitterProperties = new MaterialPropertyBlock();
+        }
+
+        emitterProperties.SetColor("_EmissionColor", color * intensity * emitterEmissionMult);
+        foreach(Renderer renderer in emitterRenderers)
+        {
+            renderer.SetPropertyBlock(emitterProperties);
         }
     }
 
@@ -217,6 +232,8 @@ public class ZapSequence : MonoBehaviour
             t += Time.deltaTime / cooldownTime;
             yield return null;
         }
+
+        SetChargeLightColorAndIntensity(chargeEndColor, 0f);
 
         SetChargeLightsActive(false);
         zapLight.enabled = false;
