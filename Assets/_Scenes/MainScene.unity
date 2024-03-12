@@ -2077,7 +2077,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &133937266
 Transform:
   m_ObjectHideFlags: 0
@@ -3342,13 +3342,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254018540}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -3, y: 1.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1419519836}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &254018542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4915,7 +4915,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &351512799
 Transform:
   m_ObjectHideFlags: 0
@@ -5603,7 +5603,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &397882039
 Transform:
   m_ObjectHideFlags: 0
@@ -13803,7 +13803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &890148783
 Transform:
   m_ObjectHideFlags: 0
@@ -14489,7 +14489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &981177568
 Transform:
   m_ObjectHideFlags: 0
@@ -15547,7 +15547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1132195491050316755, guid: db87eb3b5b499b64b8caf7cdae8ea232, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4122509760682443164, guid: db87eb3b5b499b64b8caf7cdae8ea232, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17855,13 +17855,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322504782}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 1.069, y: 1.6, z: -0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 753665234}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1322504784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30397,7 +30397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3402718436742938549, guid: d0ab560afee1bc94aa3bf6218360be66, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5858241771642600776, guid: d0ab560afee1bc94aa3bf6218360be66, type: 3}
       propertyPath: m_LocalPosition.x
