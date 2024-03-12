@@ -206,7 +206,7 @@ public class EndingCutscene : MonoBehaviour
         audioSource.PlayOneShot(paperPickupClip);
 
         //Show the player the letter
-        HudDocument.OpenDocument(letterText, null, true, true);
+        HudDocument.OpenDocument(letterText, null, true, true, false);
         HudDocument.OnDocumentUpdated += StartFinalFadeOut;
     }
 

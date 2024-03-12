@@ -455,6 +455,10 @@ PrefabInstance:
       propertyPath: documentText
       value: 
       objectReference: {fileID: 4900000, guid: 0d138ebf4026c3646aa0ec3dfbbdbf23, type: 3}
+    - target: {fileID: 3837134267765622513, guid: 5bb8f6e48ac7d9b4f86c45f643c51ac6, type: 3}
+      propertyPath: alternateEntityFont
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6623851361474243979, guid: 5bb8f6e48ac7d9b4f86c45f643c51ac6, type: 3}
       propertyPath: m_Name
       value: ResearchFindings24
@@ -9880,6 +9884,8 @@ MonoBehaviour:
   letterSprite: {fileID: 21300000, guid: 3d9bce403b9200d46b3cf17e17e66d20, type: 3}
   defaultFont: {fileID: 11400000, guid: 71d98e2f55c12c04c9d2b43c9ff09797, type: 2}
   letterFont: {fileID: 11400000, guid: 01b9a8511b0f7964d97f1fd8d174cd54, type: 2}
+  entityFont: {fileID: 11400000, guid: 28888ae678530e546aab967975890a9b, type: 2}
+  entityAlternate: {fileID: 11400000, guid: 259fa5b4c4756d64e8876497d2a948de, type: 2}
   animationTime: 0.3
   hiddenPosition: {x: -60, y: -1000}
   maxHiddenRotation: 40
@@ -16068,6 +16074,10 @@ PrefabInstance:
       propertyPath: documentText
       value: 
       objectReference: {fileID: 4900000, guid: 4f43146af38bfa247a58a3de88572ee0, type: 3}
+    - target: {fileID: 3837134267765622513, guid: 5bb8f6e48ac7d9b4f86c45f643c51ac6, type: 3}
+      propertyPath: alternateEntityFont
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6623851361474243979, guid: 5bb8f6e48ac7d9b4f86c45f643c51ac6, type: 3}
       propertyPath: m_Name
       value: Siblings
@@ -17863,7 +17873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8438298086395997728, guid: 816cadc4825c4864a8a27f762306c481, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

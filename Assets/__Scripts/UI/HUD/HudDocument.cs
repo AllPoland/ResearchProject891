@@ -31,7 +31,7 @@ public class HudDocument : MonoBehaviour
 
     public static event Action<bool> OnDocumentUpdated;
 
-    private static event Action<TextAsset, TextAsset, bool, bool> OnDocumentOpened;
+    private static event Action<TextAsset, TextAsset, bool, bool, bool> OnDocumentOpened;
 
     [Header("Components")]
     [SerializeField] private RectTransform documentTransform;
@@ -48,6 +48,10 @@ public class HudDocument : MonoBehaviour
     [SerializeField] private TMP_FontAsset defaultFont;
     [SerializeField] private TMP_FontAsset letterFont;
 
+    [Space]
+    [SerializeField] private TMP_FontAsset entityFont;
+    [SerializeField] private TMP_FontAsset entityAlternate;
+
     [Header("Animation")]
     [SerializeField] private float animationTime = 1f;
 
@@ -63,9 +67,9 @@ public class HudDocument : MonoBehaviour
     private Coroutine animationCoroutine;
 
 
-    public static void OpenDocument(TextAsset documentText, TextAsset entityText, bool justify, bool isLetter)
+    public static void OpenDocument(TextAsset documentText, TextAsset entityText, bool justify, bool isLetter, bool alternateEntityFont)
     {
-        OnDocumentOpened?.Invoke(documentText, entityText, justify, isLetter);
+        OnDocumentOpened?.Invoke(documentText, entityText, justify, isLetter, alternateEntityFont);
     }
 
 
@@ -131,7 +135,7 @@ public class HudDocument : MonoBehaviour
     }
 
 
-    public void ShowDocument(TextAsset documentText, TextAsset entityText, bool justify, bool animate = true, bool isLetter = false)
+    public void ShowDocument(TextAsset documentText, TextAsset entityText, bool justify, bool animate = true, bool isLetter = false, bool alternateEntityFont = false)
     {
         documentTransform.gameObject.SetActive(true);
         closePrompt.SetActive(true);
@@ -146,6 +150,8 @@ public class HudDocument : MonoBehaviour
             documentBackground.sprite = defaultSprite;
             textMesh.font = defaultFont;
         }
+
+        entityTextMesh.font = alternateEntityFont ? entityAlternate : entityFont;
 
         textMesh.text = documentText ? documentText.text : "";
         entityTextMesh.text = entityText ? entityText.text : "";
@@ -217,7 +223,7 @@ public class HudDocument : MonoBehaviour
             HideDocument(false);
         }
 
-        OnDocumentOpened += (textAsset, entityText, justify, isLetter) => ShowDocument(textAsset, entityText, justify, true, isLetter);
+        OnDocumentOpened += (textAsset, entityText, justify, isLetter, alternateEntityFont) => ShowDocument(textAsset, entityText, justify, true, isLetter, alternateEntityFont);
     }
 
     

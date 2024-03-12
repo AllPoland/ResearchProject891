@@ -7,6 +7,7 @@ public class HudDocumentOpen : MonoBehaviour
     [SerializeField] private TextAsset entityText;
     [SerializeField] private bool justify = true;
     [SerializeField] private bool isLetter = false;
+    [SerializeField] private bool alternateEntityFont = false;
 
     [Space]
     [SerializeField] public UnityEvent OnCloseDocument;
@@ -17,7 +18,7 @@ public class HudDocumentOpen : MonoBehaviour
     public void OpenDocument()
     {
         active = true;
-        HudDocument.OpenDocument(documentText, entityText, justify, isLetter);
+        HudDocument.OpenDocument(documentText, entityText, justify, isLetter, alternateEntityFont);
     }
 
 
