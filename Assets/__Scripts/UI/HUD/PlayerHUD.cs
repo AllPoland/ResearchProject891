@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerHUD : MonoBehaviour
 {
-    [SerializeField] private Camera hudCamera;
     [SerializeField] private Canvas hudCanvas;
 
 
