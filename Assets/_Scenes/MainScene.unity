@@ -3018,7 +3018,8 @@ MonoBehaviour:
 
 
 
-    ----- For the survival of mankind -----'
+    ----- For the survival of humankind
+    -----'
   charsPerSecond: 1000
   suffixChar: 95
   playSound: 1
@@ -3059,7 +3060,8 @@ MonoBehaviour:
 
 
 
-    ----- For the survival of mankind -----'
+    ----- For the survival of humankind
+    -----'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 71d98e2f55c12c04c9d2b43c9ff09797, type: 2}
   m_sharedMaterial: {fileID: 2135863857352367783, guid: 71d98e2f55c12c04c9d2b43c9ff09797, type: 2}
@@ -11348,7 +11350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: For the survival of mankind
+  m_text: For the survival of humankind
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 259fa5b4c4756d64e8876497d2a948de, type: 2}
   m_sharedMaterial: {fileID: -482773393565325267, guid: 259fa5b4c4756d64e8876497d2a948de, type: 2}
