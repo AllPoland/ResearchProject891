@@ -34549,9 +34549,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6671340131134130676, guid: aac8719043bb159488f7a9d10bf553bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 7336446550246027197, guid: aac8719043bb159488f7a9d10bf553bc, type: 3}
       propertyPath: m_Name
       value: WhiteBoard
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298445314381785570, guid: aac8719043bb159488f7a9d10bf553bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298445314381785570, guid: aac8719043bb159488f7a9d10bf553bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298445314381785570, guid: aac8719043bb159488f7a9d10bf553bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
