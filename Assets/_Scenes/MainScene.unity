@@ -15090,7 +15090,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[X] Close'
+  m_text: '[Esc] Close'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 71d98e2f55c12c04c9d2b43c9ff09797, type: 2}
   m_sharedMaterial: {fileID: 2135863857352367783, guid: 71d98e2f55c12c04c9d2b43c9ff09797, type: 2}
@@ -27055,8 +27055,8 @@ MonoBehaviour:
 
       power breaker inside the room.
 
-      Press [X] to stand
-      up.'
+      Press [Esc] to
+      stand up.'
     ProgressionStage: 5
   - Text: 'Observation devices are now active.
 
